@@ -54,7 +54,7 @@ Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandr
 _in IEEE Robotics and Automation Letters, vol. 7, pp. 2218-2225, 2022._
 </div>
 <div>
-<div class="csl-pdf"><a href="{{'/files/pdf/nava2022learning.pdf'| relative_url }}">PDF</a></div>
+<div class="csl-pdf"><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9686072">PDF</a></div>
 
 <style type="text/css">
   input[type='checkbox']:checked ~ #nava2022learning-bibtex {
