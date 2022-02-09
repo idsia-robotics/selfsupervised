@@ -48,6 +48,8 @@ Our research on self-supervised learning at IDSIA mainly focuses on visual perce
 
 <div markdown="1">
 
+# Publications
+
 ## Learning Visual Localization of a Quadrotor using its Noise as Self-Supervision
 
 Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandro Giusti<br/>
