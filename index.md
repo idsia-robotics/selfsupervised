@@ -40,20 +40,24 @@ Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandr
 <div class="csl-pdf"><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9686072">PDF</a></div>
 
 <style type="text/css">
-  input[type='checkbox']:checked ~ #nava2022learning-bibtex {
-      display: block;
-  }
-
-  input[type='checkbox'] ~ #nava2022learning-bibtex, #nava2022learning-show {
-      display: none;
-  }
+    .bibtex:not(.show) {
+        visibility:hidden;
+    }
+    .bibtex.show {
+        visibility:visible;
+    }
 </style>
+<script>
+    function show_bibtex(e){
+        document.querySelector('.tgt[data-value="' + e.dataset.ref + '"]').classList.toggle("show");
+    }
+</script>
 
 <input type="checkbox" id="nava2022learning-show" />
-<div class="csl-bibtex"><label class="csl-label" for="nava2022learning-show"><a>BIBTEX</a></label></div>
+<div class="csl-bibtex"><a onclick="show_bibtex(this)" data-ref="nava2022learning">BIBTEX</a></div>
 <div class="csl-doi"><a href="https://doi.org/10.1109/LRA.2022.3143565">DOI</a></div>
 
-<div id="nava2022learning-bibtex">
+<div class="bibtex" data-ref="nava2022learning">
   <pre>@article{nava2022learning,
   author={M. {Nava} and A. {Paolillo} and J. {Guzzi} and L. M. {Gambardella} and A. {Giusti}},
   journal={IEEE Robotics and Automation Letters}, 
