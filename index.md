@@ -8,16 +8,12 @@ header:
 <html>
 
 <head>
-    <script type="text/javascript" async
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
-
-  <script type="text/javascript" src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js">
-  </script>
+  <script type="text/javascript" src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js"></script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width initial-scale=1" >
 
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
@@ -50,8 +46,10 @@ Our research on self-supervised learning at IDSIA mainly focuses on visual perce
 <div markdown="1">
 ## Learning Visual Localization of a Quadrotor using its Noise as Self-Supervision
 </div>
+<p>
 Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandro Giusti<br/>
-_in IEEE Robotics and Automation Letters, vol. 7, pp. 2218-2225, 2022._
+<i>in IEEE Robotics and Automation Letters, vol. 7, pp. 2218-2225, 2022.</i>
+</p>
 
 <div>
 <div class="csl-pdf"><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9686072">PDF</a></div>
