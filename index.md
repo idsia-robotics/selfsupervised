@@ -15,7 +15,7 @@ header:
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script>
     function show_bibtex(e){
-      document.querySelector('.bibtex[data-ref="' + e.dataset.ref + '"]').classList.toggle("show");
+      document.querySelector('pre.bibtex[data-ref="' + e.dataset.ref + '"]').classList.toggle("show");
     }
   </script>
 
@@ -50,12 +50,11 @@ Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandr
 </p>
 
 <div>
-<div class="csl-pdf"><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9686072">PDF</a></div>
-<div class="csl-bibtex" onclick="show_bibtex(this)" data-ref="nava2022learning"><a>BIBTEX</a></div>
-<div class="csl-doi"><a href="https://doi.org/10.1109/LRA.2022.3143565">DOI</a></div>
+<a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9686072"><tag class="pdf"/></a>
+<a><tag class="bibtex" onclick="show_bibtex(this)" data-ref="nava2022learning"/></a>
+<a href="https://doi.org/10.1109/LRA.2022.3143565"><tag class="doi"/></a>
 
-<div class="bibtex" data-ref="nava2022learning">
-  <pre>@article{nava2022learning,
+<pre class="bibtex" data-ref="nava2022learning">@article{nava2022learning,
   author={M. {Nava} and A. {Paolillo} and J. {Guzzi} and L. M. {Gambardella} and A. {Giusti}},
   journal={IEEE Robotics and Automation Letters}, 
   title={Learning Visual Localization of a Quadrotor Using its Noise as Self-Supervision}, 
@@ -65,7 +64,6 @@ Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandr
   pages={2218-2225},
   doi={10.1109/LRA.2022.3143565}
 }</pre>
-</div>
 
 <details>
   <summary>Abstract</summary>

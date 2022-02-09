@@ -384,3 +384,39 @@ ol li {
 .csl-award a {
     color: white;
 }
+
+/* Mirko's addition */
+
+tag {
+  display:inline-block;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+tag:hover {
+  box-shadow: 0 0 5px rgba(33,33,33,.2); 
+}
+
+tag.pdf {
+  content: "PDF";
+  background-color: #2698BA;
+}
+
+tag.bibtex {
+  content: "BIBTEX";
+  background-color: #3CB371;
+}
+
+tag.doi {
+  content: "DOI";
+  background-color: #909090;
+}
