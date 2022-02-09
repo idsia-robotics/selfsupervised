@@ -96,9 +96,8 @@ a {
     vertical-align: top;
 }
 
-.csl-year {
-
-}
+/* .csl-year {
+} */
 
 .csl-index  {
     /*display: inline-block;*/
@@ -118,10 +117,8 @@ a {
 
 .csl-award {
     display:block;
-    vertical-align: top;
     color: blue;
     font-weight: 400;
-
 }
 
 /*ol {
