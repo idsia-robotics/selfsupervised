@@ -20,10 +20,10 @@ header:
   </script>
 
   <style type="text/css">
-    .bibtex:not(.show) {
+    pre.bibtex:not(.show) {
       display:none;
     }
-    .bibtex.show {
+    pre.bibtex.show {
       display:block;
     }
   </style>

@@ -387,7 +387,7 @@ ol li {
 .tag {
   display:inline-block;
   border-radius: 5px;
-  padding: 5px;
+  padding: 3px;
   color: white;
   cursor: pointer;
   text-align: center;
@@ -400,7 +400,7 @@ ol li {
 }
 
 .tag:hover {
-  box-shadow: 0 0 5px rgba(33,33,33,.2); 
+  box-shadow: 0 0 9px rgba(33,33,33,.2); 
 }
 
 .tag.pdf {
