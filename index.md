@@ -78,8 +78,7 @@ Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandr
   number={2},
   pages={2218-2225},
   doi={10.1109/LRA.2022.3143565}
-}
-</pre>
+}</pre>
 </div>
 
 <details>
@@ -95,7 +94,5 @@ Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandr
 
 </div>
 
-
 </body>
-
 </html>
