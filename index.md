@@ -41,19 +41,19 @@ Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandr
 
 <style type="text/css">
     .bibtex:not(.show) {
-        visibility:hidden;
+        display:none;
     }
     .bibtex.show {
-        visibility:visible;
+        display:block;
     }
 </style>
 <script>
     function show_bibtex(e){
+        alert(e.text);
         document.querySelector('.tgt[data-value="' + e.dataset.ref + '"]').classList.toggle("show");
     }
 </script>
 
-<input type="checkbox" id="nava2022learning-show" />
 <div class="csl-bibtex"><a onclick="show_bibtex(this)" data-ref="nava2022learning">BIBTEX</a></div>
 <div class="csl-doi"><a href="https://doi.org/10.1109/LRA.2022.3143565">DOI</a></div>
 
