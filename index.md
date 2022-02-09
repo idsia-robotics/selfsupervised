@@ -13,7 +13,20 @@ header:
 
   <script type="text/javascript" src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js"></script>
   <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script>
+    function show_bibtex(e){
+      document.querySelector('.bibtex[data-ref="' + e.dataset.ref + '"]').classList.toggle("show");
+    }
+  </script>
 
+  <style type="text/css">
+    .bibtex:not(.show) {
+      display:none;
+    }
+    .bibtex.show {
+      display:block;
+    }
+  </style>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
   <link rel="stylesheet" href="{{'/css/flickity.css'| relative_url }}">
@@ -38,21 +51,6 @@ Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandr
 
 <div>
 <div class="csl-pdf"><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9686072">PDF</a></div>
-
-<style type="text/css">
-    .bibtex:not(.show) {
-        display:none;
-    }
-    .bibtex.show {
-        display:block;
-    }
-</style>
-<script>
-    function show_bibtex(e){
-        document.querySelector('.bibtex[data-ref="' + e.dataset.ref + '"]').classList.toggle("show");
-    }
-</script>
-
 <div class="csl-bibtex" onclick="show_bibtex(this)" data-ref="nava2022learning"><a>BIBTEX</a></div>
 <div class="csl-doi"><a href="https://doi.org/10.1109/LRA.2022.3143565">DOI</a></div>
 
