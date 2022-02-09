@@ -26,23 +26,16 @@ header:
 
 <body>
 
-<h1>Introduction</h1>
-
 <p>
 Advances in deep neural network architectures and the availability of large-scale labeled datasets fueled a new wave of ai systems, enabling technologies that only 10 years ago seemed science-fiction. While results are astonishing, they overshadow a fundamental problem of this kind of system: learning very little information from a large dataset of labeled examples, which are often produced by human experts, and require a lot of resources in the making. Humans, instead, require much less information to learn new tasks &mdash; even complex ones such as driving &mdash; something attributed to our vast background knowledge on how the world works, to our intuition about simple physics and geometry. As early as babies in our stroller, we start observing the world evolving around us, taking actions and seeing the consequences, internally building a predictive model of the world by testing our hypothesis about the future against reality. <a href="https://ai.facebook.com/blog/self-supervised-learning-the-dark-matter-of-intelligence/">Self-supervised learning</a> is a new machine learning paradigm that tries to imitate this mechanism, learning as much as possible from observations of the world, which by themselves enable the training of predictive models without the use of explicit labels. Once trained, these models can quickly learn our specific task of interest and do so with much less labeled data.<br/>
 Our research on self-supervised learning at IDSIA mainly focuses on visual perception applied to real robotic tasks, such as identifying obstacles, localizing objects of interest, other robots, and people around us. This page summarizes the research findings, including videos of proposed approaches applied to multiple robot platforms in different environments.
 </p>
 
 
-<!-- separator -->
+<h1>Publications</h1>
 
+<h2>Learning Visual Localization of a Quadrotor using its Noise as Self-Supervision</h2>
 
-<div markdown="1">
-# Publications
-</div>
-<div markdown="1">
-## Learning Visual Localization of a Quadrotor using its Noise as Self-Supervision
-</div>
 <p>
 Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandro Giusti<br/>
 <i>in IEEE Robotics and Automation Letters, vol. 7, pp. 2218-2225, 2022.</i>
