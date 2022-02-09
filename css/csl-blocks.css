@@ -404,16 +404,13 @@ ol li {
 }
 
 .tag.pdf {
-  content: "PDF";
   background-color: #2698BA;
 }
 
 .tag.bibtex {
-  content: "BIBTEX";
   background-color: #3CB371;
 }
 
 .tag.doi {
-  content: "DOI";
   background-color: #909090;
 }
