@@ -8,12 +8,16 @@ header:
 <html>
 
 <head>
-  <script type="text/javascript" src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js" />
-  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" />
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
-  <meta charset="utf-8" />
+  <script type="text/javascript" src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js">
+  </script>
+
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width initial-scale=1" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
@@ -26,20 +30,30 @@ header:
 
 <body>
 
+<div markdown="1">
+# Introduction
+</div>
+
 <p>
 Advances in deep neural network architectures and the availability of large-scale labeled datasets fueled a new wave of ai systems, enabling technologies that only 10 years ago seemed science-fiction. While results are astonishing, they overshadow a fundamental problem of this kind of system: learning very little information from a large dataset of labeled examples, which are often produced by human experts, and require a lot of resources in the making. Humans, instead, require much less information to learn new tasks &mdash; even the complex ones such as driving &mdash; something attributed to our vast background knowledge on how the world works, to our intuition about simple physics and geometry. As early as babies in our stroller, we start observing the world evolving around us, taking actions and seeing the consequences, internally building a predictive model of the world by testing our hypothesis about the future against reality. <a href="https://ai.facebook.com/blog/self-supervised-learning-the-dark-matter-of-intelligence/">Self-supervised learning</a> is a new machine learning paradigm that tries to imitate this mechanism, learning as much as possible from observations of the world, which by themselves enable the training of predictive models without the use of explicit labels. Once trained, these models can quickly learn our specific task of interest and do so with much less labeled data.
 <br/>
 Our research on self-supervised learning at IDSIA mainly focuses on visual perception applied to real robotic tasks, such as identifying obstacles, localizing objects of interest, other robots, and people around us. This page summarizes the research findings, including videos of proposed approaches applied to multiple robot platforms in different environments.
 </p>
 
-<h1>Publications</h1>
 
 <!-- separator -->
 
-<h2>Learning Visual Localization of a Quadrotor using its Noise as Self-Supervision</h2>
-Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandro Giusti<br/>
-<i>in IEEE Robotics and Automation Letters, vol. 7, pp. 2218-2225, 2022.</i>
 
+<div markdown="1">
+# Publications
+</div>
+<div markdown="1">
+## Learning Visual Localization of a Quadrotor using its Noise as Self-Supervision
+</div>
+Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandro Giusti<br/>
+_in IEEE Robotics and Automation Letters, vol. 7, pp. 2218-2225, 2022._
+
+<div>
 <div class="csl-pdf"><a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9686072">PDF</a></div>
 
 <style type="text/css">
@@ -66,7 +80,8 @@ Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandr
   number={2},
   pages={2218-2225},
   doi={10.1109/LRA.2022.3143565}
-}</pre>
+}
+</pre>
 </div>
 
 <details>
@@ -80,5 +95,9 @@ Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandr
 <iframe width="560" height="315" src="https://www.youtube.com/embed/x7Xt7Xr7pWk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen />
 </div>
 
+</div>
+
+
 </body>
+
 </html>
