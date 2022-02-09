@@ -20,8 +20,8 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Research on Human-Robot Interaction using Pointing Gestures"
-subtitle: "Intuitive and efficient interaction with robots sharing space with humans"
+title                    : "Research on Self-Supervised Learning for Perception"
+subtitle: "Making sense of the world around us, one gradient descent step at a time"
 title_separator          : "-"
 name                     : "IDSIA Robotics"
 description              : "Website for the Robotics Lab at the Dalle Molle Institute for Artificial Intelligence (IDSIA)"
@@ -29,7 +29,7 @@ repository               : "idsia-robotics/idsia-robotics.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
-baseurl: "/pointing" # the subpath of your site, e.g. /blog
+baseurl: "/selfsupervised" # the subpath of your site, e.g. /blog
 url: "https://idsia-robotics.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
 # github_username:  jekyll

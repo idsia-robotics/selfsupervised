@@ -3,8 +3,6 @@ layout: splash
 title: Research on Self-Supervised Learning for Perception
 header:
   image: /files/img/header.jpg
-  # caption: >-
-  #   Photo credit: 
 ---
 
 <html>
