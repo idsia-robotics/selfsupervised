@@ -54,7 +54,7 @@ Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandr
     }
 </script>
 
-<div class="csl-bibtex"><a onclick="show_bibtex(this)" data-ref="nava2022learning">BIBTEX</a></div>
+<div class="csl-bibtex" onclick="show_bibtex(this)" data-ref="nava2022learning"><a>BIBTEX</a></div>
 <div class="csl-doi"><a href="https://doi.org/10.1109/LRA.2022.3143565">DOI</a></div>
 
 <div class="bibtex" data-ref="nava2022learning">
