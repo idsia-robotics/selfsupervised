@@ -72,7 +72,7 @@ _in IEEE Robotics and Automation Letters, vol. 7, pp. 2218-2225, 2022._
 <div class="csl-bibtex">
   <label class="csl-label" for="nava2022learning-show"><span class="csl-label">BIBTEX</span></label>
 </div>
-<div class="csl-doi"><a href="https://doi.org/10.1109/ICRA48506.2021.9561387" onclick="outbound_link('https://doi.org/10.1109/ICRA48506.2021.9561387'); return false;">DOI</a></div>
+<div class="csl-doi"><a href="https://doi.org/10.1109/LRA.2022.3143565" onclick="outbound_link('https://doi.org/10.1109/LRA.2022.3143565'); return false;">DOI</a></div>
 
 <div id="nava2022learning-bibtex">
   <p></p>
