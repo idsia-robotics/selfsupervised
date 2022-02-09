@@ -96,7 +96,9 @@ _in IEEE Robotics and Automation Letters, vol. 7, pp. 2218-2225, 2022._
   </p>
 </details>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/x7Xt7Xr7pWk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="video-wrapper">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/x7Xt7Xr7pWk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen />
+</div>
 </div>
 
 
