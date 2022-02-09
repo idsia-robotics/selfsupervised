@@ -1,0 +1,386 @@
+/* This is a CSS file for CSL blocks for paper formatting. */
+/**
+ * Code formatting
+ */
+pre,
+code {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 14px;
+  line-height: 150%;
+  border-radius: 3px;
+  background-color: #eee; }
+
+code {
+  padding: 1px 5px; }
+
+pre {
+  padding: 8px 12px;
+  overflow-x: scroll; }
+  pre > code {
+    border: 0;
+    padding-right: 0;
+    padding-left: 0; }
+
+details[open] summary ~ * {
+  animation: open 0.3s ease-in-out;
+}
+
+@keyframes open {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary {
+  width: 8.5%;
+  padding: 0.5rem 0;
+  /*border-top: 1px solid black;*/
+  position: relative;
+  cursor: pointer;
+  font-size: 1.0rem;
+  font-weight: 150;
+  list-style: none;
+}
+
+details summary:after {
+  content: "+";
+  color: black;
+  position: absolute;
+  font-size: 1.25rem;
+  line-height: 0;
+  margin-top: 0.6rem;
+  right: 0;
+  font-weight: 150;
+  transform-origin: center;
+  transition: 200ms linear;
+}
+details[open] summary:after {
+  transform: rotate(45deg);
+  font-size: 1.5rem;
+}
+details summary {
+  outline: 0;
+}
+details p {
+  font-size: 0.95rem;
+  margin: 0 0 1rem;
+  /*padding-top: 1rem;*/
+  text-indent: 25px;
+  
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+  /*
+  &:visited {
+      color: darken($brand-color, 15%);
+  }
+  */ }
+  a:hover {
+    color: #2698BA;
+    text-decoration: none; }
+
+.csl-box {
+    display: inline-block;
+    width: 100%;
+    padding: 5px;
+    border: 0px solid navy;
+    margin: 2px;
+    vertical-align: top;
+}
+
+.csl-year {
+
+}
+
+.csl-index  {
+    /*display: inline-block;*/
+    display: none;
+    vertical-align: top;
+    width: 7%;
+    color: black;
+    visibility: collapse;
+}
+
+.csl-content {
+    display: inline-block;
+    vertical-align: top;
+    width: 88%;
+
+}
+
+.csl-award {
+    display:block;
+    vertical-align: top;
+    color: blue;
+    font-weight: 400;
+
+}
+
+/*ol {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+*/
+.csl-year-header {
+    margin-left: 1.5em;
+    vertical-align: middle;
+    width: 100%;
+    line-height: 35px;
+    font-weight: 800;
+}
+
+.csl-year-icon {
+    position: relative;
+    vertical-align: middle;
+}
+
+.csl-year-icon:before {
+    content: "\f009";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    font-size: 24px;
+    margin-left: 0em;
+    padding-right: 1em;
+    padding-top: 0.22em;
+    position: absolute;
+    top: 0px;
+    visibility: hidden;
+}
+
+
+/* CSL Type icons */
+.csl-point-journal-icon {
+    position: relative;
+}
+
+.csl-point-journal-icon:before {
+    content: "\f0c8";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: #BA55D3;
+    margin-left: 0 em;
+    padding-right: 0.5em;
+    padding-top: 0.22em;
+    position: relative;
+    top: 0px;
+}
+
+
+.csl-point-conference-icon {
+    position: relative;
+}
+
+.csl-point-conference-icon:before {
+    content: "\f0c8";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: #4169E1;
+/*3366FF;*/
+    margin-left: 0 em;
+    padding-right: 0.5em;
+    padding-top: 0.22em;
+    position: relative;
+    top: 0px;
+
+}
+
+
+.csl-point-bookchapter-icon {
+    position: relative;
+}
+
+.csl-point-bookchapter-icon:before {
+    content: "\f0c8";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: #009933;
+/*33FF00;*/
+    margin-left: 0em;
+    padding-right: 0.5em;
+    padding-top: 0.22em;
+    position: relative;
+    top: 0px;
+
+}
+
+
+.csl-point-techreport-icon {
+    position: relative;
+}
+
+.csl-point-techreport-icon:before {
+    content: "\f0c8";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: #663300;
+    margin-left: 0em;
+    padding-right: 0.5em;
+    position: relative;
+    padding-top: 0.22em;
+    top: 0px;
+
+}
+
+
+.csl-point-book-icon {
+    position: relative;
+}
+
+.csl-point-book-icon:before {
+    content: "\f0c8";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: #CC9933;
+/*FFFF00;*/
+    margin-left: 0em;
+    padding-right: 0.5em;
+    padding-top: 0.22em;
+    position: relative;
+    top: 0px;
+
+}
+
+
+ol li {
+    background-repeat: no-repeat;
+    background-position: 0px center;
+    padding-left: 5px;
+    margin-top: 10px;
+}
+
+.csl-title, .csl-author, .csl-event, .csl-editor, .csl-venue {
+    display: block;
+    position: relative;
+}
+
+.csl-title b {
+    font-weight: 600;
+}
+
+.csl-author {
+    font-weight: 300;
+}
+
+.csl-event {
+    font-style: italic;
+    font-weight: 400;
+}
+
+.csl-event i {
+    font-style: italic;
+    font-weight: 300;
+}
+
+.csl-pdf, .csl-bibtex, .csl-details, .csl-slides, .csl-code, .csl-doi, .csl-video, .csl-award {
+    display:inline-block;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 400;
+    border-radius: 3px;
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+    font-size: 70%;
+}
+
+.csl-pdf {
+    background-color: #2698BA;
+}
+
+.csl-pdf a {
+    color: white;
+}
+
+.csl-slides {
+    /*background-color: #008CBA; /* Blue */
+    background-color: #16566A; /* Blue */
+}
+.csl-details {
+    /*background-color: #008CBA; /* Blue */
+    background-color: #df7514; /* Orange */
+}
+
+.csl-details a {
+    color: white;
+}
+.csl-slides a {
+    color: white;
+}
+
+.csl-code {
+    background-color: #555555; /* Black */
+}
+
+.csl-code a {
+    color: white;
+}
+
+
+.csl-bibtex {
+    background-color: #3CB371;
+}
+
+.csl-bibtex a {
+    color: white;
+}
+
+.csl-doi {
+    background-color: #909090;
+}
+
+.csl-doi a {
+    color: white;
+}
+
+.csl-label {
+    cursor: pointer;
+    font-weight: 400;
+    margin: 0;
+}
+
+.csl-bibtex span {
+    color: white;
+}
+
+.bibliography {
+    margin-left: 20px;
+}
+
+
+.csl-video {
+    background-color: #df7514;
+}
+
+.csl-video a {
+    color: white;
+}
+
+.csl-award {
+    background-color: #e1c04c;
+}
+
+.csl-award a {
+    color: white;
+}

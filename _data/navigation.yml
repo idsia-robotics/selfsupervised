@@ -1,0 +1,7 @@
+main:
+  - title: "Publications"
+    url: "#publications"
+  - title: "IDSIA"
+    url: "http://www.idsia.ch"
+  - title: "Robotics Lab"
+    url: "https://idsia-robotics.github.io/"
