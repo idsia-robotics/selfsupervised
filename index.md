@@ -49,7 +49,7 @@ Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandr
 </style>
 <script>
     function show_bibtex(e){
-        document.querySelector('.bibtex[data-value="' + e.dataset.ref + '"]').classList.toggle("show");
+        document.querySelector('.bibtex[data-ref="' + e.dataset.ref + '"]').classList.toggle("show");
     }
 </script>
 
