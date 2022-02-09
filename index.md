@@ -7,7 +7,7 @@ header:
 
 <html>
 
-  <head>
+<head>
     <script type="text/javascript" async
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
@@ -26,12 +26,8 @@ header:
   <!-- <link rel="stylesheet" href="{{'/css/bootstrap.min.css'| relative_url }}"> -->
   <!-- <link rel="stylesheet" href="{{'/css/main.css'| relative_url }}"> -->
 
-  </head>
-
-
+</head>
 <body>
-
-<div markdown="1">
 
 # Introduction
 
@@ -40,7 +36,6 @@ Advances in deep neural network architectures and the availability of large-scal
 <br/>
 Our research on self-supervised learning at IDSIA mainly focuses on visual perception applied to real robotic tasks, such as identifying obstacles, localizing objects of interest, other robots, and people around us. This page summarizes the research findings, including videos of proposed approaches applied to multiple robot platforms in different environments.
 </p>
-</div>
 
 
 <!-- separator -->
@@ -69,13 +64,10 @@ _in IEEE Robotics and Automation Letters, vol. 7, pp. 2218-2225, 2022._
 </style>
 
 <input type="checkbox" id="nava2022learning-show" />
-<div class="csl-bibtex">
-  <label class="csl-label" for="nava2022learning-show"><span class="csl-label">BIBTEX</span></label>
-</div>
-<div class="csl-doi"><a href="https://doi.org/10.1109/LRA.2022.3143565" onclick="outbound_link('https://doi.org/10.1109/LRA.2022.3143565'); return false;">DOI</a></div>
+<div class="csl-bibtex"> <label class="csl-label" for="nava2022learning-show"><span class="csl-label">BIBTEX</span></label></div>
+<div class="csl-doi"><a href="https://doi.org/10.1109/LRA.2022.3143565">DOI</a></div>
 
 <div id="nava2022learning-bibtex">
-  <p></p>
   <pre>@article{nava2022learning,
   author={M. {Nava} and A. {Paolillo} and J. {Guzzi} and L. M. {Gambardella} and A. {Giusti}},
   journal={IEEE Robotics and Automation Letters}, 
@@ -99,6 +91,7 @@ _in IEEE Robotics and Automation Letters, vol. 7, pp. 2218-2225, 2022._
 <div class="video-wrapper">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/x7Xt7Xr7pWk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen />
 </div>
+
 </div>
 
 
