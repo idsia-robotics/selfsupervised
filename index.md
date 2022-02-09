@@ -50,9 +50,9 @@ Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandr
 </p>
 
 <div>
-<a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9686072"><div class="tag pdf"/></a>
-<a><div class="tag bibtex" onclick="show_bibtex(this)" data-ref="nava2022learning"/></a>
-<a href="https://doi.org/10.1109/LRA.2022.3143565"><div class="tag doi"/></a>
+<a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9686072"><div class="tag pdf"></div></a>
+<a><div class="tag bibtex" onclick="show_bibtex(this)" data-ref="nava2022learning"></div></a>
+<a href="https://doi.org/10.1109/LRA.2022.3143565"><div class="tag doi"></div></a>
 
 <pre class="bibtex" data-ref="nava2022learning">@article{nava2022learning,
   author={M. {Nava} and A. {Paolillo} and J. {Guzzi} and L. M. {Gambardella} and A. {Giusti}},
