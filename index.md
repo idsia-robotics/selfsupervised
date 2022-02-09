@@ -50,7 +50,7 @@ Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandr
 </style>
 
 <input type="checkbox" id="nava2022learning-show" />
-<div class="csl-bibtex"> <label class="csl-label" for="nava2022learning-show"><span class="csl-label">BIBTEX</span></label></div>
+<div class="csl-bibtex"><label class="csl-label" for="nava2022learning-show"><a>BIBTEX</a></label></div>
 <div class="csl-doi"><a href="https://doi.org/10.1109/LRA.2022.3143565">DOI</a></div>
 
 <div id="nava2022learning-bibtex">
