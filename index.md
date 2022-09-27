@@ -46,18 +46,19 @@ Our research on self-supervised learning at IDSIA mainly focuses on visual perce
 
 <h1>Publications</h1><a id="publications"></a>
 
-<h2>Learning Visual Localization of a Quadrotor using its Noise as Self-Supervision</h2>
-<p>
-Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandro Giusti<br/>
-<i>in IEEE Robotics and Automation Letters, vol. 7, pp. 2218-2225, 2022.</i>
-</p>
 
 <div>
-<a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9686072"><div class="tag pdf">PDF</div></a>
-<a><div class="tag bibtex" onclick="show_bibtex(this)" data-ref="nava2022learning">BIBTEX</div></a>
-<a href="https://doi.org/10.1109/LRA.2022.3143565"><div class="tag doi">DOI</div></a>
+  <h2>Learning Visual Localization of a Quadrotor using its Noise as Self-Supervision</h2>
+  <p>
+  Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandro Giusti<br/>
+  <i>in IEEE Robotics and Automation Letters, vol. 7, pp. 2218-2225, 2022.</i>
+  </p>
 
-<pre class="bibtex no-scrollbar" data-ref="nava2022learning">@article{nava2022learning,
+  <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9686072"><div class="tag pdf">PDF</div></a>
+  <a><div class="tag bibtex" onclick="show_bibtex(this)" data-ref="nava2022learning">BIBTEX</div></a>
+  <a href="https://doi.org/10.1109/LRA.2022.3143565"><div class="tag doi">DOI</div></a>
+
+  <pre class="bibtex no-scrollbar" data-ref="nava2022learning">@article{nava2022learning,
   author={M. {Nava} and A. {Paolillo} and J. {Guzzi} and L. M. {Gambardella} and A. {Giusti}},
   journal={IEEE Robotics and Automation Letters}, 
   title={Learning Visual Localization of a Quadrotor Using its Noise as Self-Supervision}, 
@@ -66,16 +67,16 @@ Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandr
   number={2},
   pages={2218-2225},
   doi={10.1109/LRA.2022.3143565}
-}</pre>
+  }</pre>
 
-<details>
-  <summary>Abstract</summary>
-  <p>
-  We introduce an approach to train neural network models for visual object localization using a small training set, labeled with ground truth object positions, and a large unlabeled one. We assume that the object to be localized emits sound, which is perceived by a microphone rigidly affixed to the camera. This information is used as the target of a cross-modal pretext task: predicting sound features from camera frames. By solving the pretext task, the model draws self-supervision from visual and auditory data. The approach is well suited to robot learning: we instantiate it to localize a small quadrotor from 128x80 pixel images acquired by a ground robot. Experiments on a separate testing set show that introducing the auxiliary pretext task yields large performance improvements: the Mean Absolute Error (MAE) of the estimated image coordinates of the target is reduced from 7 to 4 pixels; the MAE of the estimated distance is reduced from 28 cm to 14 cm. A model that has access to labels for the entire training set yields a MAE of 2 pixels and 11 cm, respectively.
-  </p>
-</details>
+  <details>
+    <summary>Abstract</summary>
+    <p>
+    We introduce an approach to train neural network models for visual object localization using a small training set, labeled with ground truth object positions, and a large unlabeled one. We assume that the object to be localized emits sound, which is perceived by a microphone rigidly affixed to the camera. This information is used as the target of a cross-modal pretext task: predicting sound features from camera frames. By solving the pretext task, the model draws self-supervision from visual and auditory data. The approach is well suited to robot learning: we instantiate it to localize a small quadrotor from 128x80 pixel images acquired by a ground robot. Experiments on a separate testing set show that introducing the auxiliary pretext task yields large performance improvements: the Mean Absolute Error (MAE) of the estimated image coordinates of the target is reduced from 7 to 4 pixels; the MAE of the estimated distance is reduced from 28 cm to 14 cm. A model that has access to labels for the entire training set yields a MAE of 2 pixels and 11 cm, respectively.
+    </p>
+  </details>
 
-<iframe width="854" height="480" src="https://www.youtube.com/embed/x7Xt7Xr7pWk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen />
+  <iframe width="854" height="480" src="https://www.youtube.com/embed/x7Xt7Xr7pWk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen />
 </div>
 
 </body>
