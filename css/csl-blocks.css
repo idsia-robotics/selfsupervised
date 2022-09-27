@@ -413,6 +413,10 @@ ol li {
 
 /* Mirko's addition */
 
+.no-scrollbar {
+    overflow: hidden;
+}
+
 .fluid-width-video-wrapper {
     width: 70%;
     margin: auto;

@@ -20,9 +20,6 @@ header:
   </script>
 
   <style type="text/css">
-    .no-scrollbar {
-      overflow: hidden;
-    }
     pre.bibtex:not(.show) {
       display:none;
     }
