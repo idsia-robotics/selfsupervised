@@ -23,7 +23,7 @@ header:
     pre.bibtex {
         transition: height 0.2s ease-in-out,
             width 0.3s ease-in-out,
-            opacity 0.2s ease-in-out,
+            opacity 0.1s ease-in-out,
             padding 0.1s ease-in-out,
             margin 0.1s ease-in-out;
     }
