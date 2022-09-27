@@ -415,6 +415,7 @@ ol li {
 
 .fluid-width-video-wrapper {
     width: 70%;
+    margin: auto;
 }
 
 .tag {
