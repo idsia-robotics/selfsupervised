@@ -77,7 +77,7 @@ Our research on self-supervised learning at IDSIA mainly focuses on visual perce
     </p>
   </details>
   
-  <iframe width="854" height="480" src="https://www.youtube.com/embed/fuexj03mGNo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen />
+  <iframe width="854" height="480" src="https://www.youtube.com/embed/fuexj03mGNo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
 <div>
@@ -109,7 +109,7 @@ Our research on self-supervised learning at IDSIA mainly focuses on visual perce
     </p>
   </details>
 
-  <iframe width="854" height="480" src="https://www.youtube.com/embed/G3cIDRrkfZY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen />
+  <iframe width="854" height="480" src="https://www.youtube.com/embed/G3cIDRrkfZY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
 <div>
@@ -141,7 +141,7 @@ Our research on self-supervised learning at IDSIA mainly focuses on visual perce
     </p>
   </details>
   <!-- https://github.com/idsia-robotics/state-consistency-loss/blob/main/video/video.mp4 -->
-  <iframe width="854" height="480" src="https://www.youtube.com/embed/x7Xt7Xr7pWk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen />
+  <iframe width="854" height="480" src="https://www.youtube.com/embed/x7Xt7Xr7pWk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
 <div>
@@ -173,7 +173,7 @@ Our research on self-supervised learning at IDSIA mainly focuses on visual perce
     </p>
   </details>
 
-  <iframe width="854" height="480" src="https://www.youtube.com/embed/JvtDGO43qew" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen />
+  <iframe width="854" height="480" src="https://www.youtube.com/embed/JvtDGO43qew" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
 
