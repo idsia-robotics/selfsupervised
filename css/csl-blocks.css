@@ -4,88 +4,101 @@
  */
 pre,
 code {
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-  font-size: 14px;
-  line-height: 150%;
-  border-radius: 3px;
-  background-color: #eee; }
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-size: 14px;
+    line-height: 150%;
+    border-radius: 3px;
+    background-color: #eee;
+}
 
 code {
-  padding: 1px 5px; }
+    padding: 1px 5px;
+}
 
 pre {
-  padding: 8px 12px;
-  overflow-x: scroll; }
-  pre > code {
+    padding: 8px 12px;
+    overflow-x: scroll;
+}
+
+pre>code {
     border: 0;
     padding-right: 0;
-    padding-left: 0; }
+    padding-left: 0;
+}
 
-details[open] summary ~ * {
-  animation: open 0.3s ease-in-out;
+details[open] summary~* {
+    animation: open 0.3s ease-in-out;
 }
 
 @keyframes open {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
+
 details summary::-webkit-details-marker {
-  display: none;
+    display: none;
 }
 
 details summary {
-  width: 8.5%;
-  padding: 0.5rem 0;
-  /*border-top: 1px solid black;*/
-  position: relative;
-  cursor: pointer;
-  font-size: 1.0rem;
-  font-weight: 150;
-  list-style: none;
+    width: 8.5%;
+    padding: 0.5rem 0;
+    /*border-top: 1px solid black;*/
+    position: relative;
+    cursor: pointer;
+    font-size: 1.0rem;
+    font-weight: 150;
+    list-style: none;
 }
 
 details summary:after {
-  content: "+";
-  color: black;
-  position: absolute;
-  font-size: 1.25rem;
-  line-height: 0;
-  margin-top: 0.6rem;
-  right: 0;
-  font-weight: 150;
-  transform-origin: center;
-  transition: 200ms linear;
+    content: "+";
+    color: black;
+    position: absolute;
+    font-size: 1.25rem;
+    line-height: 0;
+    margin-top: 0.6rem;
+    right: 0;
+    font-weight: 150;
+    transform-origin: center;
+    transition: 200ms linear;
 }
+
 details[open] summary:after {
-  transform: rotate(45deg);
-  font-size: 1.5rem;
+    transform: rotate(45deg);
+    font-size: 1.5rem;
 }
+
 details summary {
-  outline: 0;
+    outline: 0;
 }
+
 details p {
-  font-size: 0.95rem;
-  margin: 0 0 1rem;
-  /*padding-top: 1rem;*/
-  text-indent: 25px;
-  
+    font-size: 0.95rem;
+    margin: 0 0 1rem;
+    /*padding-top: 1rem;*/
+    text-indent: 25px;
+
 }
 
 a {
-  color: #333;
-  text-decoration: none;
-  /*
+    color: #333;
+    text-decoration: none;
+    /*
   &:visited {
       color: darken($brand-color, 15%);
   }
-  */ }
-  a:hover {
+  */
+}
+
+a:hover {
     color: #2698BA;
-    text-decoration: none; }
+    text-decoration: none;
+}
 
 .csl-box {
     display: inline-block;
@@ -99,7 +112,7 @@ a {
 /* .csl-year {
 } */
 
-.csl-index  {
+.csl-index {
     /*display: inline-block;*/
     display: none;
     vertical-align: top;
@@ -116,7 +129,7 @@ a {
 }
 
 .csl-award {
-    display:block;
+    display: block;
     color: blue;
     font-weight: 400;
 }
@@ -188,7 +201,7 @@ a {
     font-weight: normal;
     text-decoration: inherit;
     color: #4169E1;
-/*3366FF;*/
+    /*3366FF;*/
     margin-left: 0 em;
     padding-right: 0.5em;
     padding-top: 0.22em;
@@ -209,7 +222,7 @@ a {
     font-weight: normal;
     text-decoration: inherit;
     color: #009933;
-/*33FF00;*/
+    /*33FF00;*/
     margin-left: 0em;
     padding-right: 0.5em;
     padding-top: 0.22em;
@@ -250,7 +263,7 @@ a {
     font-weight: normal;
     text-decoration: inherit;
     color: #CC9933;
-/*FFFF00;*/
+    /*FFFF00;*/
     margin-left: 0em;
     padding-right: 0.5em;
     padding-top: 0.22em;
@@ -267,7 +280,11 @@ ol li {
     margin-top: 10px;
 }
 
-.csl-title, .csl-author, .csl-event, .csl-editor, .csl-venue {
+.csl-title,
+.csl-author,
+.csl-event,
+.csl-editor,
+.csl-venue {
     display: block;
     position: relative;
 }
@@ -290,8 +307,15 @@ ol li {
     font-weight: 300;
 }
 
-.csl-pdf, .csl-bibtex, .csl-details, .csl-slides, .csl-code, .csl-doi, .csl-video, .csl-award {
-    display:inline-block;
+.csl-pdf,
+.csl-bibtex,
+.csl-details,
+.csl-slides,
+.csl-code,
+.csl-doi,
+.csl-video,
+.csl-award {
+    display: inline-block;
     vertical-align: middle;
     text-align: center;
     text-decoration: none;
@@ -312,22 +336,27 @@ ol li {
 
 .csl-slides {
     /*background-color: #008CBA; /* Blue */
-    background-color: #16566A; /* Blue */
+    background-color: #16566A;
+    /* Blue */
 }
+
 .csl-details {
     /*background-color: #008CBA; /* Blue */
-    background-color: #df7514; /* Orange */
+    background-color: #df7514;
+    /* Orange */
 }
 
 .csl-details a {
     color: white;
 }
+
 .csl-slides a {
     color: white;
 }
 
 .csl-code {
-    background-color: #555555; /* Black */
+    background-color: #555555;
+    /* Black */
 }
 
 .csl-code a {
@@ -384,34 +413,38 @@ ol li {
 
 /* Mirko's addition */
 
+.fluid-width-video-wrapper {
+    width: 70%;
+}
+
 .tag {
-  display:inline-block;
-  border-radius: 5px;
-  padding: 3px;
-  color: white;
-  cursor: pointer;
-  font-size: small;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 3px;
+    color: white;
+    cursor: pointer;
+    font-size: small;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .tag:hover {
-  box-shadow: 0 0 9px rgba(33,33,33,.2); 
+    box-shadow: 0 0 9px rgba(33, 33, 33, .2);
 }
 
 .tag.pdf {
-  background-color: #2698BA;
+    background-color: #2698BA;
 }
 
 .tag.bibtex {
-  background-color: #3CB371;
+    background-color: #3CB371;
 }
 
 .tag.doi {
-  background-color: #909090;
+    background-color: #909090;
 }
