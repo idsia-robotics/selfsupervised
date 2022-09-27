@@ -20,6 +20,9 @@ header:
   </script>
 
   <style type="text/css">
+    .no-scrollbar {
+      overflow: hidden;
+    }
     pre.bibtex:not(.show) {
       display:none;
     }
@@ -54,7 +57,7 @@ Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca M. Gambardella, and Alessandr
 <a><div class="tag bibtex" onclick="show_bibtex(this)" data-ref="nava2022learning">BIBTEX</div></a>
 <a href="https://doi.org/10.1109/LRA.2022.3143565"><div class="tag doi">DOI</div></a>
 
-<pre class="bibtex" data-ref="nava2022learning">@article{nava2022learning,
+<pre class="bibtex no-scrollbar" data-ref="nava2022learning">@article{nava2022learning,
   author={M. {Nava} and A. {Paolillo} and J. {Guzzi} and L. M. {Gambardella} and A. {Giusti}},
   journal={IEEE Robotics and Automation Letters}, 
   title={Learning Visual Localization of a Quadrotor Using its Noise as Self-Supervision}, 
