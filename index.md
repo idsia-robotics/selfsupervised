@@ -44,6 +44,7 @@ Advances in deep neural network architectures and the availability of large-scal
 Our research on self-supervised learning at IDSIA mainly focuses on visual perception applied to real robotic tasks, such as identifying obstacles, localizing objects of interest, other robots, and people around us. This page summarizes the research findings, including videos of proposed approaches applied to multiple robot platforms in different environments.
 </p>
 
+
 <h1>Publications</h1><a id="publications"></a>
 
 
