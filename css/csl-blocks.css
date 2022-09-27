@@ -418,6 +418,10 @@ ol li {
     margin: auto;
 }
 
+pre.bibtex {
+    border-radius: 10px;
+}
+
 .tag {
     display: inline-block;
     border-radius: 5px;
