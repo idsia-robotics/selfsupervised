@@ -20,14 +20,10 @@ header:
   </script>
 
   <style type="text/css">
-    .fluid-width-video-wrapper {
+    .fluid-width-video-wrapper, .fluid-width-video-wrapper iframe {
       padding: auto;
-    }
-
-    .fluid-width-video-wrapper iframe {
-      display: block;
       margin: auto;
-      padding: auto;
+      display: block;
       position: relative;
       width: auto;
       height: auto;
