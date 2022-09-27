@@ -417,11 +417,6 @@ ol li {
     overflow: hidden;
 }
 
-.fluid-width-video-wrapper {
-    width: 70%;
-    margin: auto;
-}
-
 pre.bibtex {
     border-radius: 10px;
 }

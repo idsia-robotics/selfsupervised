@@ -20,6 +20,12 @@ header:
   </script>
 
   <style type="text/css">
+    iframe {
+      display: block;
+      margin: auto;
+      padding: auto;
+    }
+
     pre.bibtex {
         transition: height 0.2s ease-in-out,
             width 0.3s ease-in-out,
@@ -83,7 +89,7 @@ Our research on self-supervised learning at IDSIA mainly focuses on visual perce
     </p>
   </details>
   
-  <iframe src="https://www.youtube.com/embed/fuexj03mGNo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <iframe width="854" height="480" src="https://www.youtube.com/embed/fuexj03mGNo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
 <div>
