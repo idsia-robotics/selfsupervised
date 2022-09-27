@@ -20,10 +20,17 @@ header:
   </script>
 
   <style type="text/css">
-    iframe {
+    .fluid-width-video-wrapper {
+      padding: auto;
+    }
+
+    .fluid-width-video-wrapper iframe {
       display: block;
       margin: auto;
       padding: auto;
+      position: relative;
+      width: auto;
+      height: auto;
     }
 
     pre.bibtex {
