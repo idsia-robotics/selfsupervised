@@ -20,11 +20,20 @@ header:
   </script>
 
   <style type="text/css">
-    pre.bibtex:not(.show) {
-      display:none;
+    pre.bibtex {
+        transition: height 0.2s ease-in-out,
+            width 0.3s ease-in-out,
+            opacity 0.2s ease-in-out,
+            padding 0.1s ease-in-out,
+            margin 0.1s ease-in-out;
     }
-    pre.bibtex.show {
-      display:block;
+
+    pre.bibtex:not(.show) {
+        width: 0;
+        height: 0;
+        opacity: 0;
+        padding: 0;
+        margin: 0;
     }
   </style>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
