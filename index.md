@@ -118,7 +118,7 @@ Todo
     </p>
   </details>
 
-  <iframe src="https://www.youtube.com/embed/A9gpNRDH56E" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/A9gpNRDH56E" frameborder="0" allow="autoplay; encrypted-media" style="aspect-ratio: 16/9; width: 80%;" allowfullscreen></iframe>
 </div>
 
 <div>
