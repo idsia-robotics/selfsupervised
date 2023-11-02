@@ -58,6 +58,58 @@ Todo
 
 
 <div>
+  <h2>Self-Supervised Prediction of the Intention to Interact With a Service Robot</h2>
+  <p>
+      Gabriele Abbate, Alessandro Giusti, Viktor Schmuck, Oya Celiktutan, and Antonio Paolillo<br />
+      <i>in Robotics and Autonomous Systems, 2023.</i>
+  </p>
+
+  <a href="https://arxiv.org/pdf/2309.07477">
+      <div class="tag pdf">Preprint PDF</div>
+  </a>
+  <!-- <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9686072">
+      <div class="tag pdf">PDF</div>
+  </a> -->
+  <!-- <a>
+      <div class="tag bibtex" onclick="show_bibtex(this)" data-ref="abbate2023self">BIBTEX</div>
+  </a> -->
+  <!-- <a href="https://doi.org/10.1109/LRA.2022.3143565">
+      <div class="tag doi">DOI</div>
+  </a> -->
+
+  <pre class="bibtex no-scrollbar" data-ref="abbate2023self">Bibtex entry here.</pre>
+
+  <details>
+      <summary>Abstract</summary>
+      <p>
+          A service robot can provide a smoother interaction experience if it has the
+          ability to proactively detect whether a nearby user intends to interact, in
+          order to adapt its behavior e.g. by explicitly showing that it is available to
+          provide a service. In this work, we propose a learning-based approach to
+          predict the probability that a human user will interact with a robot before
+          the interaction actually begins; the approach is self-supervised because after
+          each encounter with a human, the robot can automatically label it depending on
+          whether it resulted in an interaction or not. We explore different
+          classification approaches, using different sets of features considering the pose
+          and the motion of the user. We validate and deploy the approach in three
+          scenarios. The first collects 3442 natural sequences (both interacting and
+          non-interacting) representing employees in an office break area: a real-world,
+          challenging setting, where we consider a coffee machine in place of a service
+          robot. The other two scenarios represent researchers interacting with service
+          robots (200 and 72 sequences, respectively). Results show that, even
+          in challenging real-world settings, our approach can learn without external
+          supervision, and can achieve accurate classification (i.e. AUROC greater
+          than 0.9) of the user's intention to interact with an advance of more than 3 s
+          before the interaction actually occurs.
+      </p>
+  </details>
+
+  <!-- video here <iframe src="https://www.youtube.com/embed/fuexj03mGNo" frameborder="0" allow="autoplay; encrypted-media" 
+      style="aspect-ratio: 16/9; width: 80%;" allowfullscreen></iframe> -->
+</div>
+
+
+<div>
   <h2>Learning Visual Localization of a Quadrotor using its Noise as Self-Supervision</h2>
   <p>
   Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca Maria Gambardella, and Alessandro Giusti<br/>
