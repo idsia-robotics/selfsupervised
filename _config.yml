@@ -20,8 +20,8 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Research on Self-Supervised Learning for Perception"
-subtitle: "Making sense of the world around us, one gradient descent step at a time"
+title                    : "Self-Supervised Learning for Perception"
+subtitle                 : ""
 title_separator          : "-"
 name                     : "IDSIA Robotics"
 description              : "Website for the Robotics Lab at the Dalle Molle Institute for Artificial Intelligence (IDSIA)"
