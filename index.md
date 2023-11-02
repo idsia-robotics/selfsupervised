@@ -46,7 +46,7 @@ header:
 <body>
 
 
-<h1>About</h1><a id="about"></a>
+<!-- <h1>About</h1><a id="about"></a> -->
 
 
 <p>
