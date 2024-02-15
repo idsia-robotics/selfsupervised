@@ -58,6 +58,40 @@ Todo
 
 
 <div>
+  <h2>Self-Supervised Learning of Visual Robot Localization Using LED State Prediction as a Pretext Task</h2>
+  <p>
+  Mirko Nava, Nicholas Carlotti, Luca Crupi, Daniele Palossi, and Alessandro Giusti<br/>
+  <i>in IEEE Robotics and Automation Letters, vol. TBD, pp. TBD, 2024.</i>
+  </p>
+
+  <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10436339"><div class="tag pdf">PDF</div></a>
+  <a><div class="tag bibtex" onclick="show_bibtex(this)" data-ref="nava2024self">BIBTEX</div></a>
+  <a href="https://doi.org/10.1109/LRA.2024.3365973"><div class="tag doi">DOI</div></a>
+
+  <pre class="bibtex no-scrollbar" data-ref="nava2024self">@article{nava2024self,
+author={Nava, Mirko and Carlotti, Nicholas and Crupi, Luca and Palossi, Daniele and Giusti, Alessandro},
+journal={{IEEE} Robotics and Automation Letters}, 
+title={Self-Supervised Learning of Visual Robot Localization Using LED State Prediction as a Pretext Task}, 
+year={2024},
+volume={tbd},
+number={tdb},
+pages={tbd},
+doi={10.1109/LRA.2024.3365973}
+}</pre>
+
+  <details>
+    <summary>Abstract</summary>
+    <p>
+    We propose a novel self-supervised approach for learning to localize robots equipped with controllable LEDs visually. We rely on a few training samples labeled with position ground truth and many training samples in which only the LED state is known, whose collection is cheap. We show that using LED state prediction as a pretext task significantly helps to solve the visual localization end task. The resulting model does not require knowledge of LED states during inference.
+    We instantiate the approach to visual relative localization of nano-quadrotors: experimental results show that using our pretext task significantly improves localization accuracy (from 68.3% to 76.2%) and outperforms alternative strategies, such as a supervised baseline, model pre-training, or an autoencoding pretext task. We deploy our model aboard a 27-g Crazyflie nano-drone, running at 21 fps, in a position-tracking task of a peer nano-drone. Our approach, relying on position labels for only 300 images, yields a mean tracking error of 4.2 cm versus 11.9 cm of a supervised baseline model trained without our pretext task.
+    </p>
+  </details>
+  
+  <!-- <iframe width="854" height="480" src="https://www.youtube.com/embed/fuexj03mGNo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+</div>
+
+
+<div>
   <h2>Self-Supervised Prediction of the Intention to Interact With a Service Robot</h2>
   <p>
       Gabriele Abbate, Alessandro Giusti, Viktor Schmuck, Oya Celiktutan, and Antonio Paolillo<br />
