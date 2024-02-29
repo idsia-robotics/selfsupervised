@@ -73,10 +73,11 @@ author={Nava, Mirko and Carlotti, Nicholas and Crupi, Luca and Palossi, Daniele 
 journal={IEEE Robotics and Automation Letters}, 
 title={Self-Supervised Learning of Visual Robot Localization Using LED State Prediction as a Pretext Task}, 
 year={2024},
-volume={tbd},
-number={tdb},
-pages={tbd},
-doi={10.1109/LRA.2024.3365973}
+volume={9},
+number={4},
+pages={3363-3370},
+doi={10.1109/LRA.2024.3365973},
+}
 }</pre>
 
   <details>
