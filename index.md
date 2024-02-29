@@ -69,15 +69,14 @@ Todo
   <a href="https://doi.org/10.1109/LRA.2024.3365973"><div class="tag doi">DOI</div></a>
 
   <pre class="bibtex no-scrollbar" data-ref="nava2024self">@article{nava2024self,
-author={Nava, Mirko and Carlotti, Nicholas and Crupi, Luca and Palossi, Daniele and Giusti, Alessandro},
-journal={IEEE Robotics and Automation Letters}, 
-title={Self-Supervised Learning of Visual Robot Localization Using LED State Prediction as a Pretext Task}, 
-year={2024},
-volume={9},
-number={4},
-pages={3363-3370},
-doi={10.1109/LRA.2024.3365973},
-}
+  author={Nava, Mirko and Carlotti, Nicholas and Crupi, Luca and Palossi, Daniele and Giusti, Alessandro},
+  journal={IEEE Robotics and Automation Letters}, 
+  title={Self-Supervised Learning of Visual Robot Localization Using LED State Prediction as a Pretext Task}, 
+  year={2024},
+  volume={9},
+  number={4},
+  pages={3363-3370},
+  doi={10.1109/LRA.2024.3365973},
 }</pre>
 
   <details>
