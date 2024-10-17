@@ -56,6 +56,37 @@ Todo
 
 <h1>Publications</h1><a id="publications"></a>
 
+<div>
+  <h2>Learning to Estimate the Pose of a Peer Robot in a Camera Image by Predicting the States of its LEDs</h2>
+  <p>
+  Nicholas Carlotti, Mirko Nava, and Alessandro Giusti<br/>
+  <i>in IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 2024</i>
+  </p>
+
+  <a href="https://arxiv.org/abs/2407.10661"><div class="tag pdf">PDF</div></a>
+  <a><div class="tag bibtex" onclick="show_bibtex(this)" data-ref="carlotti2024learning">BIBTEX</div></a>
+  <a href="https://doi.org/10.48550/arXiv.2407.10661"><div class="tag doi">DOI</div></a>
+
+  <pre class="bibtex no-scrollbar" data-ref="carlotti2024learning">@inproceedings{nava2024self,
+  author={Carlotti, Nicholas and Nava, Mirko and Giusti, Alessandro},
+  journal={2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, 
+  title={Learning to Estimate the Pose of a Peer Robot in a Camera Image by Predicting the States of its LEDs}, 
+  year={2024},
+  doi={10.48550/arXiv.2407.10661},
+}</pre>
+
+  <details>
+    <summary>Abstract</summary>
+    <p>
+      We consider the problem of training a fully convolutional network to estimate the relative 6D pose of a robot given a camera image, when the robot is equipped with independent controllable LEDs placed in different parts of its body.  The training data is composed by few (or zero) images labeled with a ground truth relative pose and many images labeled only with the true state (<tt>on</tt> or <tt>off</tt>) of each of the peer LEDs.  The former data is expensive to acquire, requiring external infrastructure for tracking the two robots; the latter is cheap as it can be acquired by two unsupervised robots moving randomly and toggling their LEDs while sharing the true LED states via radio.
+      Training with the latter dataset on estimating the LEDs' state of the peer robot (<i>pretext task</i>) promotes learning the relative localization task (<i>end task</i>).
+      Experiments on real-world data acquired by two autonomous wheeled robots show that a model trained only on the pretext task successfully learns to localize a peer robot on the image plane; fine-tuning such model on the end task with few labeled images yields statistically significant improvements in 6D relative pose estimation with respect to baselines that do not use pretext-task pre-training, and alternative approaches. 
+      Estimating the state of multiple independent LEDs promotes learning to estimate relative heading.
+      The approach works even when a large fraction of training images do not include the peer robot and generalizes well to unseen environments.
+    </p>
+  </details>
+</div>
+
 
 <div>
   <h2>Self-Supervised Learning of Visual Robot Localization Using LED State Prediction as a Pretext Task</h2>
