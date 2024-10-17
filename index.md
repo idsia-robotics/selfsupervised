@@ -67,7 +67,7 @@ Todo
   <a><div class="tag bibtex" onclick="show_bibtex(this)" data-ref="carlotti2024learning">BIBTEX</div></a>
   <a href="https://doi.org/10.48550/arXiv.2407.10661"><div class="tag doi">DOI</div></a>
 
-  <pre class="bibtex no-scrollbar" data-ref="carlotti2024learning">@inproceedings{nava2024self,
+  <pre class="bibtex no-scrollbar" data-ref="carlotti2024learning">@inproceedings{carlotti2024learning,
   author={Carlotti, Nicholas and Nava, Mirko and Giusti, Alessandro},
   journal={2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, 
   title={Learning to Estimate the Pose of a Peer Robot in a Camera Image by Predicting the States of its LEDs}, 
