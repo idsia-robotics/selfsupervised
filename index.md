@@ -57,6 +57,34 @@ Todo
 <h1>Publications</h1><a id="publications"></a>
 
 <div>
+  <h2>Self-supervised Learning Of Visual Pose Estimation Without Pose Labels By Classifying LED States</h2>
+  <p>
+  Nicholas Carlotti, Mirko Nava, and Alessandro Giusti<br/>
+  <i>in 9th Annual Conference on Robot Learning (CoRL)</i>
+  </p>
+
+  <a href="https://openreview.net/forum?id=OXHF0BvmRT"><div class="tag pdf">PDF</div></a>
+  <a><div class="tag bibtex" onclick="show_bibtex(this)" data-ref="carlotti2025self">BIBTEX</div></a>
+  <a href="https://doi.org/10.48550/arXiv.2509.10405"><div class="tag doi">DOI</div></a>
+
+  <pre class="bibtex no-scrollbar" data-ref="carlotti2025self">@inproceedings{
+carlotti2025selfsupervised,
+title={Self-supervised Learning Of Visual Pose Estimation Without Pose Labels By Classifying {LED} States},
+author={Nicholas Carlotti and Mirko Nava and Alessandro Giusti},
+booktitle={9th Annual Conference on Robot Learning},
+year={2025},
+url={https://openreview.net/forum?id=OXHF0BvmRT}
+}</pre>
+
+  <details>
+    <summary>Abstract</summary>
+    <p>
+      We introduce a model for monocular RGB relative pose estimation of a ground robot that trains from scratch without pose labels nor prior knowledge about the robot's shape or appearance. At training time, we assume: (i) a robot fitted with multiple LEDs, whose states are independent and known at each frame; (ii) knowledge of the approximate viewing direction of each LED; and (iii) availability of a calibration image with a known target distance, to address the ambiguity of monocular depth estimation. Training data is collected by a pair of robots moving randomly without needing external infrastructure or human supervision. Our model trains on the task of predicting from an image the state of each LED on the robot. In doing so, it learns to predict the position of the robot in the image, its distance, and its relative bearing. At inference time, the state of the LEDs is unknown, can be arbitrary, and does not affect the pose estimation performance. Quantitative experiments indicate that our approach: is competitive with SoA approaches that require supervision from pose labels or a CAD model of the robot; generalizes to different domains; and handles multi-robot pose estimation.
+    </p>
+  </details>
+</div>
+
+<div>
   <h2>Learning to Estimate the Pose of a Peer Robot in a Camera Image by Predicting the States of its LEDs</h2>
   <p>
   Nicholas Carlotti, Mirko Nava, and Alessandro Giusti<br/>
