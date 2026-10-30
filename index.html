@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robot Self-Supervised Learning — IDSIA Autonomous Robotics</title>
+<meta name="description" content="Research on self-supervised learning for robot perception at the Autonomous Robotics group, IDSIA (USI-SUPSI), Lugano, Switzerland.">
+
+<!--
+================================================================================
+  HOW TO EDIT THIS PAGE
+================================================================================
+  The page is plain HTML + CSS with no build step, no dependencies and no
+  JavaScript needed to display the content. Everything lives in this one file.
+
+  STRUCTURE
+    1. <style>            all the CSS, grouped and commented
+    2. <header>           title and navigation
+    3. #overview          two short paragraphs
+    4. #publications      one <article class="pub"> per paper, newest first,
+                          separated by <h2 class="year"> dividers
+    5. <footer>           affiliation and contact
+    6. <script>           only powers the "Copy" button on BibTeX blocks
+
+  TO ADD A PAPER
+    Copy the TEMPLATE block at the end of the publications list, paste it in
+    the right year, and fill in the fields. Every block has exactly the same
+    shape, in this order:
+        h3        title
+        .authors  author list
+        .venue    venue, volume/pages, year
+        .links    one <a> per resource (DOI, arXiv, PDF, Code, Dataset, ...)
+        .abstract the abstract, verbatim from the published version
+        BibTeX    <details> with the citation
+        Video     <details> with a YouTube embed  (omit if there is no video)
+
+  CONVENTIONS
+    - Omit any part that does not apply; nothing else needs changing.
+    - Each card carries a number: id="pN" on the <article> and [N] in
+      <p class="index">. The [1,2,3] links in the overview point at those ids.
+      The numbers are only labels, so the cheapest way to add a paper is to give
+      it the next unused number rather than renumbering the whole list.
+    - To swap a video, replace only the 11-character ID after /embed/ (and the
+      same ID in the "watch on YouTube" fallback link just below the player).
+
+  IF A PLAYER SHOWS "Video unavailable - error 153"
+    YouTube refuses to embed when the page sends no referrer. That happens when
+    the file is opened directly from disk (file://...) or inside a sandboxed
+    preview pane -- not when it is served over http(s). Serve it locally with
+        python3 -m http.server
+    and open http://localhost:8000/, or just deploy it; the players work there.
+    The "watch on YouTube" link under each player always works regardless.
+    - Colors, spacing and fonts are CSS custom properties at the top of
+      <style>; change them in one place and the whole page follows.
+    - Dark mode is automatic; each color is defined in three places
+      (:root, the prefers-color-scheme block, and :root[data-theme="dark"]).
+================================================================================
+-->
+
+<style>
+/* ============================================================
+   1. DESIGN TOKENS  — change colors and fonts here
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  --bg:          #fbfaf8;   /* page background            */
+  --bg-card:     #ffffff;   /* paper cards, header, footer */
+  --bg-sunken:   #f2f0ec;   /* bibtex blocks              */
+  --text:        #17181a;   /* body text                  */
+  --text-dim:    #5c6066;   /* abstracts, venues          */
+  --text-faint:  #868b91;   /* labels, year dividers      */
+  --line:        #e3e0da;   /* borders                    */
+  --accent:      #0f5f8a;   /* links and buttons          */
+  --accent-soft: #e7f1f7;   /* link-button background     */
+
+  --mono:  ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+
+  --measure: 48rem;         /* max width of running text  */
+}
+
+/* dark mode — automatic */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg:          #14151a;
+    --bg-card:     #1b1d23;
+    --bg-sunken:   #22252c;
+    --text:        #eceef1;
+    --text-dim:    #a8aeb7;
+    --text-faint:  #7d848e;
+    --line:        #2c3038;
+    --accent:      #6cb6dd;
+    --accent-soft: #17303d;
+  }
+}
+
+/* dark mode — forced with <html data-theme="dark"> */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg:          #14151a;
+  --bg-card:     #1b1d23;
+  --bg-sunken:   #22252c;
+  --text:        #eceef1;
+  --text-dim:    #a8aeb7;
+  --text-faint:  #7d848e;
+  --line:        #2c3038;
+  --accent:      #6cb6dd;
+  --accent-soft: #17303d;
+}
+
+/* ============================================================
+   2. BASE
+   ============================================================ */
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; }
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+/* every band of content is centred by this wrapper */
+.wrap {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ============================================================
+   3. HEADER
+   ============================================================ */
+.site-header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .wrap { padding-block: 2.75rem 2.25rem; }
+
+.eyebrow {
+  margin: 0 0 .75rem;
+  font-size: .75rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.eyebrow a { color: inherit; text-decoration: none; }
+.eyebrow a:hover { color: var(--accent); text-decoration: underline; }
+
+h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(1.9rem, 1.2rem + 2.6vw, 3rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -.015em;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.25rem;
+  margin-top: 1.4rem;
+  font-size: .9rem;
+}
+.site-nav a { color: var(--text-dim); }
+.site-nav a:hover { color: var(--accent); }
+
+/* ============================================================
+   4. OVERVIEW
+   ============================================================ */
+.overview .wrap { padding-block: 2.25rem .5rem; }
+
+.overview h2 {
+  margin: 0 0 .7rem;
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.overview h3 {
+  margin: 1.5rem 0 .4rem;
+  font-size: .755rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.overview p {
+  max-width: var(--measure);
+  margin: 0 0 1rem;
+  color: var(--text-dim);
+}
+
+/* [1,2,3] citation links inside the overview */
+.refs {
+  font-family: var(--mono);
+  font-size: .8rem;
+  white-space: nowrap;
+}
+.refs a { text-decoration: none; }
+.refs a:hover { text-decoration: underline; }
+
+/* ============================================================
+   5. PUBLICATION LIST
+   ============================================================ */
+.publications .wrap { padding-block: 1.5rem 3rem; }
+
+/* year divider */
+.year {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2.5rem 0 1.25rem;
+  font-family: var(--mono);
+  font-size: .8rem;
+  font-weight: 400;
+  letter-spacing: .1em;
+  color: var(--text-faint);
+}
+.year::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+/* one paper */
+.pub {
+  margin: 0 0 1rem;
+  padding: 1.4rem 1.5rem 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.index {
+  margin: 0 0 .35rem;
+  font-family: var(--mono);
+  font-size: .75rem;
+  color: var(--text-faint);
+}
+
+/* highlight a card when it is reached through an [n] link */
+.pub { scroll-margin-top: 1.5rem; }
+.pub:target {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.pub h3 {
+  margin: 0 0 .5rem;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -.005em;
+}
+
+.authors { margin: 0; font-size: .95rem; }
+
+.venue {
+  margin: .2rem 0 0;
+  font-size: .9rem;
+  color: var(--text-dim);
+}
+
+/* resource buttons: DOI / arXiv / PDF / Code / Dataset ... */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: .9rem 0 0;
+}
+.links a {
+  display: inline-block;
+  padding: .22rem .55rem;
+  font-size: .755rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+.links a:hover { border-color: var(--accent); }
+
+.abstract { margin: 1rem 0 0; font-size: .95rem; }
+.abstract h4 {
+  margin: 0 0 .3rem;
+  font-size: .755rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.abstract p { margin: 0; color: var(--text-dim); }
+
+/* ============================================================
+   6. COLLAPSIBLES (BibTeX and Video)
+   ============================================================ */
+details.fold { margin: .9rem 0 0; }
+
+details.fold > summary {
+  width: fit-content;
+  padding: .15rem 0;
+  cursor: pointer;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+details.fold > summary:hover { color: var(--accent); }
+details.fold[open] > summary { margin-bottom: .6rem; }
+
+/* bibtex */
+.bib { position: relative; }
+.bib pre {
+  margin: 0;
+  padding: .9rem 1rem;
+  overflow-x: auto;
+  background: var(--bg-sunken);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: .8rem;
+  line-height: 1.55;
+  tab-size: 2;
+}
+.bib button {
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  padding: .22rem .5rem;
+  font: inherit;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.bib button:hover { color: var(--accent); border-color: var(--accent); }
+
+/* video */
+.video {
+  max-width: 40rem;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--bg-sunken);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.video iframe { display: block; width: 100%; height: 100%; border: 0; }
+
+.video-fallback {
+  max-width: 40rem;
+  margin: .5rem 0 0;
+  font-size: .8rem;
+  color: var(--text-faint);
+}
+
+/* ============================================================
+   7. FOOTER
+   ============================================================ */
+.site-footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--line);
+  color: var(--text-faint);
+  font-size: .875rem;
+}
+.site-footer .wrap { padding-block: 1.75rem 2.25rem; }
+.site-footer p { margin: 0 0 .4rem; }
+
+/* ============================================================
+   8. SMALL SCREENS
+   ============================================================ */
+@media (max-width: 34rem) {
+  .wrap { padding: 0 1rem; }
+  .pub  { padding: 1.15rem 1.1rem 1.25rem; border-radius: 10px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<header class="site-header">
+  <div class="wrap">
+    <p class="eyebrow">Autonomous Robotics Research Area · <a href="https://www.idsia.ch/">Dalle Molle Institute for AI (IDSIA)</a> · <a href="https://www.usi.ch/">USI</a>–<a href="https://www.supsi.ch/">SUPSI</a></p>
+    <h1>Robot Self-Supervised Learning</h1>
+    <nav class="site-nav" aria-label="Related sites">
+      <a href="#overview">Overview</a>
+      <a href="#publications">Publications</a>
+      <a href="https://idsia-robotics.github.io/">Robotics Lab</a>
+      <a href="https://www.idsia.ch/">IDSIA</a>
+      <a href="https://github.com/idsia-robotics">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ==================== OVERVIEW ==================== -->
+<section class="overview" id="overview">
+  <div class="wrap">
+    <h2>Overview</h2>
+
+    <p>
+      We consider the problem of learning robot perception models when ground truth
+      labels are expensive or impossible to acquire, as they typically require external
+      tracking infrastructure or manual annotation. In the works listed below the
+      supervisory signal is instead derived from data that the robot acquires
+      autonomously: from the redundancy between sensors that differ in range, field of
+      view or modality <span class="refs">[<a href="#p19">19</a>, <a href="#p1">1</a>, <a href="#p3">3</a>, <a href="#p16">16</a>]</span>; from the constraints that the robot's own motion
+      imposes on predictions made at different instants <span class="refs">[<a href="#p18">18</a>, <a href="#p2">2</a>, <a href="#p9">9</a>, <a href="#p11">11</a>, <a href="#p17">17</a>]</span>; from auxiliary
+      pretext tasks whose targets are known at training time and whose solution requires
+      solving the end task <span class="refs">[<a href="#p12">12</a>, <a href="#p7">7</a>, <a href="#p8">8</a>, <a href="#p5">5</a>, <a href="#p4">4</a>]</span>; from the observed outcome of the robot's own
+      actions <span class="refs">[<a href="#p13">13</a>, <a href="#p10">10</a>, <a href="#p6">6</a>]</span>; and from the regularity of the non-anomalous data that the
+      robot ordinarily acquires <span class="refs">[<a href="#p15">15</a>, <a href="#p14">14</a>]</span>.
+    </p>
+
+    <p>
+      These approaches are instantiated on relative 6D pose and heading estimation
+      between peer robots <span class="refs">[<a href="#p5">5</a>, <a href="#p7">7</a>, <a href="#p8">8</a>, <a href="#p12">12</a>]</span>; visual localization of nano-quadrotors <span class="refs">[<a href="#p12">12</a>, <a href="#p16">16</a>]</span>
+      and of drone racing gates <span class="refs">[<a href="#p2">2</a>]</span>; omnidirectional human detection and 2D pose
+      estimation from a planar lidar <span class="refs">[<a href="#p1">1</a>, <a href="#p3">3</a>]</span>; human pose estimation aboard nano-drones
+      <span class="refs">[<a href="#p9">9</a>, <a href="#p11">11</a>, <a href="#p18">18</a>]</span>; long-range obstacle detection and mapping <span class="refs">[<a href="#p19">19</a>, <a href="#p18">18</a>]</span>; self-localization
+      and localization of a nearby wall from onboard sensors <span class="refs">[<a href="#p17">17</a>]</span>; prediction of the
+      intention of a user to interact with a service robot <span class="refs">[<a href="#p6">6</a>, <a href="#p10">10</a>, <a href="#p13">13</a>]</span>; visual anomaly
+      detection for mobile robots <span class="refs">[<a href="#p14">14</a>, <a href="#p15">15</a>]</span>; and walking mode estimation for exosuits
+      <span class="refs">[<a href="#p4">4</a>]</span>. Models are trained on data acquired autonomously and are validated on real
+      wheeled robots, nano-quadrotors and service robots deployed in public spaces, in
+      several cases running on board ultra-low-power hardware <span class="refs">[<a href="#p9">9</a>, <a href="#p11">11</a>]</span>.
+    </p>
+  </div>
+</section>
+
+<!-- ==================== PUBLICATIONS ==================== -->
+<section class="publications" id="publications">
+  <div class="wrap">
+
+    <!-- ─────────────────────────── 2026 ─────────────────────────── -->
+    <h2 class="year" id="y2026">2026</h2>
+
+    <article class="pub" id="p1">
+      <p class="index">[1]</p>
+      <h3>Factorized Spatio-Temporal Convolutions for Human Pose Estimation from Planar Lidar</h3>
+      <p class="authors">Simone Arreghini, Mirko Nava, Nicholas Carlotti, Antonio Paolillo, and Alessandro Giusti</p>
+      <p class="venue">To appear in <em>IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</em>, 2026</p>
+      <div class="links">
+        <a href="https://doi.org/10.48550/arXiv.2607.21309">DOI</a>
+        <a href="https://arxiv.org/abs/2607.21309">arXiv</a>
+        <a href="https://arxiv.org/pdf/2607.21309">PDF</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>Localizing nearby humans and estimating their facing direction are key capabilities for safe navigation and socially aware human-robot interaction. Many pose-estimation pipelines target cameras and 3D LiDAR or assume GPU-class compute, whereas service robots are often equipped only with omnidirectional planar LiDARs and modest onboard processors. We address omnidirectional human detection and relative 2D pose estimation from planar LiDAR sequences with a lightweight network based on Space-Time Blocks, which explicitly separate spatial processing along scan rays from temporal aggregation across scans. Our network processes 360° LiDAR sequences to output per-ray human presence, distance, and relative orientation. We train it via cross-modal self-supervision from a narrow RGB-D body tracker in the sensors' overlap region, removing the need for manual LiDAR labels. Quantitative experiments show that our approach consistently outperforms a parameter-matched baseline model, reducing errors in distance (-38%), position (-28%), and orientation (-15%). We further benchmark on the public FROG dataset, report real-time CPU inference on a service robot, and validate with in-field demonstrations, supporting its suitability for spatial perception on computationally constrained service robots.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@inproceedings{arreghini2026factorized,
+  author={Arreghini, Simone and Nava, Mirko and Carlotti, Nicholas and Paolillo, Antonio and Giusti, Alessandro},
+  booktitle={2026 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  title={Factorized Spatio-Temporal Convolutions for Human Pose Estimation from Planar Lidar},
+  year={2026},
+  doi={10.48550/arXiv.2607.21309},
+}</code></pre>
+        </div>
+      </details>
+      <details class="fold">
+        <summary>Video</summary>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/Ay7KMmk-ESA?rel=0" title="Video: Factorized Spatio-Temporal Convolutions for Human Pose Estimation from Planar Lidar" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="video-fallback">If the player shows an error, <a href="https://www.youtube.com/watch?v=Ay7KMmk-ESA">watch on YouTube</a>.</p>
+      </details>
+    </article>
+
+    <article class="pub" id="p2">
+      <p class="index">[2]</p>
+      <h3>Self-supervised Domain Adaptation for Visual 3D Pose Estimation of Nano-drone Racing Gates by Enforcing Geometric Consistency</h3>
+      <p class="authors">Nicholas Carlotti, Michele Antonazzi, Elia Cereda, Mirko Nava, Nicola Basilico, Daniele Palossi, and Alessandro Giusti</p>
+      <p class="venue">in <em>IEEE International Conference on Robotics and Automation (ICRA)</em>, 2026</p>
+      <div class="links">
+        <a href="https://doi.org/10.48550/arXiv.2603.02936">DOI</a>
+        <a href="https://arxiv.org/abs/2603.02936">arXiv</a>
+        <a href="https://arxiv.org/pdf/2603.02936">PDF</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>We consider the task of visually estimating the relative pose of a drone racing gate in front of a nano-quadrotor, using a convolutional neural network pre-trained on simulated data to regress the gate's pose. Due to the sim-to-real gap, the pre-trained model underperforms in the real world and must be adapted to the target domain. We propose an unsupervised domain adaptation (UDA) approach using only real image sequences collected by the drone flying an arbitrary trajectory in front of a gate; sequences are annotated in a self-supervised fashion with the drone's odometry as measured by its onboard sensors. On this dataset, a state consistency loss enforces that two images acquired at different times yield pose predictions that are consistent with the drone's odometry. Results indicate that our approach outperforms other SoA UDA approaches, has a low mean absolute error in position (x=26, y=28, z=10 cm) and orientation (ψ=13°), an improvement of 40% in position and 37% in orientation over a baseline. The approach's effectiveness is appreciable with as few as 10 minutes of real-world flight data and yields models with an inference time of 30.4ms (33 fps) when deployed aboard the Crazyflie 2.1 Brushless nano-drone.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@inproceedings{carlotti2026selfsupervised,
+  author={Carlotti, Nicholas and Antonazzi, Michele and Cereda, Elia and Nava, Mirko and Basilico, Nicola and Palossi, Daniele and Giusti, Alessandro},
+  booktitle={2026 IEEE International Conference on Robotics and Automation (ICRA)},
+  title={Self-supervised Domain Adaptation for Visual 3D Pose Estimation of Nano-drone Racing Gates by Enforcing Geometric Consistency},
+  year={2026},
+  doi={10.48550/arXiv.2603.02936},
+}</code></pre>
+        </div>
+      </details>
+    </article>
+
+    <article class="pub" id="p3">
+      <p class="index">[3]</p>
+      <h3>Sixth-Sense: Self-Supervised Learning of Spatial Awareness of Humans from a Planar Lidar</h3>
+      <p class="authors">Simone Arreghini, Nicholas Carlotti, Mirko Nava, Antonio Paolillo, and Alessandro Giusti</p>
+      <p class="venue">in <em>IEEE International Conference on Advanced Robotics and its Social Impacts (ARSO)</em>, pp. 102–107, 2026</p>
+      <div class="links">
+        <a href="https://doi.org/10.1109/ARSO68304.2026.11536132">DOI</a>
+        <a href="https://arxiv.org/abs/2502.21029">arXiv</a>
+        <a href="https://arxiv.org/pdf/2502.21029">PDF</a>
+        <a href="https://github.com/idsia-robotics/sixth_sense_lhpe">Code</a>
+        <a href="https://zenodo.org/records/14936069">Dataset</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>Reliable localization of people is fundamental for service and social robots that must operate in close interaction with humans. State-of-the-art human detectors often rely on RGB-D cameras or costly 3D LiDARs. However, most commercial robots are equipped with cameras with a narrow field of view, leaving them unaware of users approaching from other directions, or inexpensive 1D LiDARs whose readings are hard to interpret. To address these limitations, we propose a self-supervised approach to detect humans and estimate their 2D pose from 1D LiDAR data, using detections from an RGB-D camera as supervision. Trained on 70 minutes of autonomously collected data, our model detects humans omnidirectionally in unseen environments with 71 % precision, 80 % recall, and mean absolute errors of 13 cm in distance and 44° in orientation, measured against ground truth data. Beyond raw detection accuracy, this capability is relevant for robots operating in shared public spaces, where omnidirectional awareness of nearby people is crucial for safe navigation, appropriate approach behavior, and timely human-robot interaction initiation using low-cost, privacy-preserving sensing. Deployment in two additional public environments further suggests that the approach can serve as a practical wide-FOV awareness layer for socially aware service robotics.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@inproceedings{arreghini2026sixthsense,
+  author={Arreghini, Simone and Carlotti, Nicholas and Nava, Mirko and Paolillo, Antonio and Giusti, Alessandro},
+  booktitle={2026 IEEE International Conference on Advanced Robotics and its Social Impacts (ARSO)},
+  title={Sixth-Sense: Self-Supervised Learning of Spatial Awareness of Humans from a Planar Lidar},
+  year={2026},
+  pages={102-107},
+  doi={10.1109/ARSO68304.2026.11536132},
+}</code></pre>
+        </div>
+      </details>
+      <details class="fold">
+        <summary>Video</summary>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/Wlw-mB84FPk?rel=0" title="Video: Sixth-Sense: Self-Supervised Learning of Spatial Awareness of Humans from a Planar Lidar" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="video-fallback">If the player shows an error, <a href="https://www.youtube.com/watch?v=Wlw-mB84FPk">watch on YouTube</a>.</p>
+      </details>
+    </article>
+
+    <article class="pub" id="p4">
+      <p class="index">[4]</p>
+      <h3>User-Tailored Learning to Forecast Walking Modes for Exosuits</h3>
+      <p class="authors">Gabriele Abbate, Enrica Tricomi, Nathalie Gierden, Alessandro Giusti, Lorenzo Masia, and Antonio Paolillo</p>
+      <p class="venue">To appear in <em>IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</em>, 2026</p>
+      <div class="links">
+        <a href="https://doi.org/10.48550/arXiv.2603.15329">DOI</a>
+        <a href="https://arxiv.org/abs/2603.15329">arXiv</a>
+        <a href="https://arxiv.org/pdf/2603.15329">PDF</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>Assistive robotic devices, like soft lower-limb exoskeletons or exosuits, are widely spreading with the promise of helping people in everyday life. To make such systems adaptive to the variety of users wearing them, it is desirable to endow exosuits with advanced perception systems. However, exosuits have little sensory equipment because they need to be light and easy to wear. This paper presents a perception module based on machine learning that aims at estimating 3 walking modes (i.e., ascending or descending stairs and walking on level ground) of users wearing an exosuit. We tackle this perception problem using only inertial data from two sensors. Our approach provides an estimate for both future and past timesteps that supports control and enables a self-labeling procedure for online model adaptation. Indeed, we show that our estimate can label data acquired online and refine the model for new users. A thorough analysis carried out on real-life datasets shows the effectiveness of our user-tailored perception module. Finally, we integrate our system with the exosuit in a closed-loop controller, validating its performance in an online single-subject experiment.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@inproceedings{abbate2026usertailored,
+  author={Abbate, Gabriele and Tricomi, Enrica and Gierden, Nathalie and Giusti, Alessandro and Masia, Lorenzo and Paolillo, Antonio},
+  booktitle={2026 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  title={User-Tailored Learning to Forecast Walking Modes for Exosuits},
+  year={2026},
+  doi={10.48550/arXiv.2603.15329},
+}</code></pre>
+        </div>
+      </details>
+      <details class="fold">
+        <summary>Video</summary>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/arcrc17y6m4?rel=0" title="Video: User-Tailored Learning to Forecast Walking Modes for Exosuits" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="video-fallback">If the player shows an error, <a href="https://www.youtube.com/watch?v=arcrc17y6m4">watch on YouTube</a>.</p>
+      </details>
+    </article>
+
+    <!-- ─────────────────────────── 2025 ─────────────────────────── -->
+    <h2 class="year" id="y2025">2025</h2>
+
+    <article class="pub" id="p5">
+      <p class="index">[5]</p>
+      <h3>Self-supervised Learning of Visual Pose Estimation Without Pose Labels by Classifying LED States</h3>
+      <p class="authors">Nicholas Carlotti, Mirko Nava, and Alessandro Giusti</p>
+      <p class="venue">in <em>9th Annual Conference on Robot Learning (CoRL)</em>, 2025</p>
+      <div class="links">
+        <a href="https://openreview.net/forum?id=OXHF0BvmRT">OpenReview</a>
+        <a href="https://doi.org/10.48550/arXiv.2509.10405">DOI</a>
+        <a href="https://arxiv.org/abs/2509.10405">arXiv</a>
+        <a href="https://arxiv.org/pdf/2509.10405">PDF</a>
+        <a href="https://github.com/idsia-robotics/ssl-pose-estimation-without-pose-labels">Code</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>We introduce a model for monocular RGB relative pose estimation of a ground robot that trains from scratch without pose labels nor prior knowledge about the robot's shape or appearance. At training time, we assume: (i) a robot fitted with multiple LEDs, whose states are independent and known at each frame; (ii) knowledge of the approximate viewing direction of each LED; and (iii) availability of a calibration image with a known target distance, to address the ambiguity of monocular depth estimation. Training data is collected by a pair of robots moving randomly without needing external infrastructure or human supervision. Our model trains on the task of predicting from an image the state of each LED on the robot. In doing so, it learns to predict the position of the robot in the image, its distance, and its relative bearing. At inference time, the state of the LEDs is unknown, can be arbitrary, and does not affect the pose estimation performance. Quantitative experiments indicate that our approach: is competitive with SoA approaches that require supervision from pose labels or a CAD model of the robot; generalizes to different domains; and handles multi-robot pose estimation.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@inproceedings{carlotti2025selfsupervised,
+  author={Carlotti, Nicholas and Nava, Mirko and Giusti, Alessandro},
+  booktitle={9th Annual Conference on Robot Learning (CoRL)},
+  title={Self-supervised Learning Of Visual Pose Estimation Without Pose Labels By Classifying {LED} States},
+  year={2025},
+  url={https://openreview.net/forum?id=OXHF0BvmRT},
+  doi={10.48550/arXiv.2509.10405},
+}</code></pre>
+        </div>
+      </details>
+    </article>
+
+    <!-- ─────────────────────────── 2024 ─────────────────────────── -->
+    <h2 class="year" id="y2024">2024</h2>
+
+    <article class="pub" id="p6">
+      <p class="index">[6]</p>
+      <h3>A Service Robot in the Wild: Analysis of Users Intentions, Robot Behaviors, and Their Impact on the Interaction</h3>
+      <p class="authors">Simone Arreghini, Gabriele Abbate, Alessandro Giusti, and Antonio Paolillo</p>
+      <p class="venue">in <em>IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</em>, pp. 2536–2541, 2024</p>
+      <div class="links">
+        <a href="https://doi.org/10.1109/IROS58592.2024.10801875">DOI</a>
+        <a href="https://arxiv.org/abs/2410.03287">arXiv</a>
+        <a href="https://arxiv.org/pdf/2410.03287">PDF</a>
+        <a href="https://github.com/idsia-robotics/service-robot-in-the-wild">Code &amp; data</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>We consider a service robot that offers chocolate treats to people passing in its proximity: it has the capability of predicting in advance a person's intention to interact, and to actuate an "offering" gesture, subtly extending the tray of chocolates towards a given target. We run the system for more than 5 hours across 3 days and two different crowded public locations; the system implements three possible behaviors that are randomly toggled every few minutes: passive (e.g. never performing the offering gesture); or active, triggered by either a naive distance-based rule, or a smart approach that relies on various behavioral cues of the user. We collect a real-world dataset that includes information on 1777 users with several spontaneous human-robot interactions and study the influence of robot actions on people's behavior. Our comprehensive analysis suggests that users are more prone to engage with the robot when it proactively starts the interaction. We release the dataset and provide insights to make our work reproducible for the community. Also, we report qualitative observations collected during the acquisition campaign and identify future challenges and research directions in the domain of social human-robot interaction.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@inproceedings{arreghini2024service,
+  author={Arreghini, Simone and Abbate, Gabriele and Giusti, Alessandro and Paolillo, Antonio},
+  booktitle={2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  title={A Service Robot in the Wild: Analysis of Users Intentions, Robot Behaviors, and Their Impact on the Interaction},
+  year={2024},
+  pages={2536-2541},
+  doi={10.1109/IROS58592.2024.10801875},
+}</code></pre>
+        </div>
+      </details>
+      <details class="fold">
+        <summary>Video</summary>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/NNgbNRxm5V4?rel=0" title="Video: A Service Robot in the Wild" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="video-fallback">If the player shows an error, <a href="https://www.youtube.com/watch?v=NNgbNRxm5V4">watch on YouTube</a>.</p>
+      </details>
+    </article>
+
+    <article class="pub" id="p7">
+      <p class="index">[7]</p>
+      <h3>Learning to Estimate the Pose of a Peer Robot in a Camera Image by Predicting the States of its LEDs</h3>
+      <p class="authors">Nicholas Carlotti, Mirko Nava, and Alessandro Giusti</p>
+      <p class="venue">in <em>IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</em>, pp. 2763–2769, 2024</p>
+      <div class="links">
+        <a href="https://doi.org/10.1109/IROS58592.2024.10801959">DOI</a>
+        <a href="https://arxiv.org/abs/2407.10661">arXiv</a>
+        <a href="https://arxiv.org/pdf/2407.10661">PDF</a>
+        <a href="https://github.com/idsia-robotics/ssl-pretext-multi-led">Code</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>We consider the problem of training a fully convolutional network to estimate the relative 6D pose of a robot given a camera image, when the robot is equipped with independent controllable LEDs placed in different parts of its body. The training data is composed by few (or zero) images labeled with a ground truth relative pose and many images labeled only with the true state (ON or OFF) of each of the peer LEDs. The former data is expensive to acquire, requiring external infrastructure for tracking the two robots; the latter is cheap as it can be acquired by two unsupervised robots moving randomly and toggling their LEDs while sharing the true LED states via radio. Training with the latter dataset on estimating the LEDs' state of the peer robot (pretext task) promotes learning the relative localization task (end task). Experiments on real-world data acquired by two autonomous wheeled robots show that a model trained only on the pretext task successfully learns to localize a peer robot on the image plane; fine-tuning such model on the end task with few labeled images yields statistically significant improvements in 6D relative pose estimation with respect to baselines that do not use pretext-task pre-training, and alternative approaches. Estimating the state of multiple independent LEDs promotes learning to estimate relative heading. The approach works even when a large fraction of training images do not include the peer robot and generalizes well to unseen environments.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@inproceedings{carlotti2024learning,
+  author={Carlotti, Nicholas and Nava, Mirko and Giusti, Alessandro},
+  booktitle={2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  title={Learning to Estimate the Pose of a Peer Robot in a Camera Image by Predicting the States of its LEDs},
+  year={2024},
+  pages={2763-2769},
+  doi={10.1109/IROS58592.2024.10801959},
+}</code></pre>
+        </div>
+      </details>
+    </article>
+
+    <article class="pub" id="p8">
+      <p class="index">[8]</p>
+      <h3>Multi-LED Classification as Pretext For Robot Heading Estimation</h3>
+      <p class="authors">Nicholas Carlotti, Mirko Nava, and Alessandro Giusti</p>
+      <p class="venue">in <em>IEEE ICRA@40</em>, Rotterdam, 2024</p>
+      <div class="links">
+        <a href="https://doi.org/10.48550/arXiv.2410.04536">DOI</a>
+        <a href="https://arxiv.org/abs/2410.04536">arXiv</a>
+        <a href="https://arxiv.org/pdf/2410.04536">PDF</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>We propose a self-supervised approach for visual robot detection and heading estimation by learning to estimate the states (OFF or ON) of four independent robot-mounted LEDs. Experimental results show a median image-space position error of 14 px and relative heading MAE of 17 degrees, versus a supervised upperbound scoring 10 px and 8 degrees, respectively.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@inproceedings{carlotti2024multiled,
+  author={Carlotti, Nicholas and Nava, Mirko and Giusti, Alessandro},
+  booktitle={IEEE ICRA@40, Rotterdam},
+  title={Multi-{LED} Classification as Pretext For Robot Heading Estimation},
+  year={2024},
+  doi={10.48550/arXiv.2410.04536},
+}</code></pre>
+        </div>
+      </details>
+    </article>
+
+    <article class="pub" id="p9">
+      <p class="index">[9]</p>
+      <h3>Training on the Fly: On-Device Self-Supervised Learning Aboard Nano-Drones Within 20 mW</h3>
+      <p class="authors">Elia Cereda, Alessandro Giusti, and Daniele Palossi</p>
+      <p class="venue">in <em>IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems</em>, vol. 43, no. 11, pp. 3685–3695, 2024</p>
+      <div class="links">
+        <a href="https://doi.org/10.1109/TCAD.2024.3447208">DOI</a>
+        <a href="https://arxiv.org/abs/2408.03168">arXiv</a>
+        <a href="https://arxiv.org/pdf/2408.03168">PDF</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>Miniaturized cyber-physical systems (CPSs) powered by tiny machine learning (TinyML), such as nano-drones, are becoming an increasingly attractive technology. Their small form factor (i.e., ∼10 cm diameter) ensures vast applicability, ranging from the exploration of narrow disaster scenarios to safe human-robot interaction. Simple electronics make these CPSs inexpensive, but strongly limit the computational, memory, and sensing resources available on board. In real-world applications, these limitations are further exacerbated by domain shift. This fundamental machine learning problem implies that the model perception performance drops when moving from the training domain to a different deployment one. To cope with and mitigate this general problem, we present a novel on-device fine-tuning approach that relies only on the limited ultralow power resources available aboard nano-drones. Then, to overcome the lack of ground-truth training labels aboard our CPS, we also employ a self-supervised method based on the ego-motion consistency. Albeit our work builds on the top of a specific real-world vision-based human pose estimation task, it is widely applicable for many embedded TinyML use cases. Our 512-image on-device training procedure is fully deployed aboard an ultralow power GWT GAP9 system-on-chip and requires only 1 MB of memory while consuming as low as 19 mW or running in just 510 ms (at 38 mW). Finally, we demonstrate the benefits of our on-device learning approach by field-testing our closed-loop CPS, showing a reduction in horizontal position error of up to 26% versus a non-fine-tuned state-of-the-art baseline. In the most challenging never-seen-before environment, our on-device learning procedure makes the difference between succeeding or failing the mission.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@article{cereda2024training,
+  author={Cereda, Elia and Giusti, Alessandro and Palossi, Daniele},
+  journal={IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems},
+  title={Training on the Fly: On-Device Self-Supervised Learning Aboard Nano-Drones Within 20 mW},
+  year={2024},
+  volume={43},
+  number={11},
+  pages={3685-3695},
+  doi={10.1109/TCAD.2024.3447208},
+}</code></pre>
+        </div>
+      </details>
+      <details class="fold">
+        <summary>Video</summary>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/3yNbMwszpSY?rel=0" title="Video: Training on the Fly — On-device Self-supervised Learning aboard Nano-drones within 20 mW" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="video-fallback">If the player shows an error, <a href="https://www.youtube.com/watch?v=3yNbMwszpSY">watch on YouTube</a>.</p>
+      </details>
+    </article>
+
+    <article class="pub" id="p10">
+      <p class="index">[10]</p>
+      <h3>Predicting the Intention to Interact with a Service Robot: the Role of Gaze Cues</h3>
+      <p class="authors">Simone Arreghini, Gabriele Abbate, Alessandro Giusti, and Antonio Paolillo</p>
+      <p class="venue">in <em>IEEE International Conference on Robotics and Automation (ICRA)</em>, pp. 993–999, 2024</p>
+      <div class="links">
+        <a href="https://doi.org/10.1109/ICRA57147.2024.10610289">DOI</a>
+        <a href="https://arxiv.org/abs/2404.01986">arXiv</a>
+        <a href="https://arxiv.org/pdf/2404.01986">PDF</a>
+        <a href="https://github.com/idsia-robotics/intention-to-interact-detector-gaze">Code</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>For a service robot, it is crucial to perceive as early as possible that an approaching person intends to interact: in this case, it can proactively enact friendly behaviors that lead to an improved user experience. We solve this perception task with a sequence-to-sequence classifier of a potential user intention to interact, which can be trained in a self-supervised way. Our main contribution is a study of the benefit of features representing the person's gaze in this context. Extensive experiments on a novel dataset show that the inclusion of gaze cues significantly improves the classifier performance (AUROC increases from 84.5 % to 91.2 %); the distance at which an accurate classification can be achieved improves from 2.4 m to 3.2 m. We also quantify the system's ability to adapt to new environments without external supervision. Qualitative experiments show practical applications with a waiter robot.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@inproceedings{arreghini2024predicting,
+  author={Arreghini, Simone and Abbate, Gabriele and Giusti, Alessandro and Paolillo, Antonio},
+  booktitle={2024 IEEE International Conference on Robotics and Automation (ICRA)},
+  title={Predicting the Intention to Interact with a Service Robot: the Role of Gaze Cues},
+  year={2024},
+  pages={993-999},
+  doi={10.1109/ICRA57147.2024.10610289},
+}</code></pre>
+        </div>
+      </details>
+      <details class="fold">
+        <summary>Video</summary>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/5V6efrEtfBI?rel=0" title="Video: Predicting the intention to interact with a service robot — the role of gaze cues" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="video-fallback">If the player shows an error, <a href="https://www.youtube.com/watch?v=5V6efrEtfBI">watch on YouTube</a>.</p>
+      </details>
+    </article>
+
+    <article class="pub" id="p11">
+      <p class="index">[11]</p>
+      <h3>On-device Self-supervised Learning of Visual Perception Tasks aboard Hardware-limited Nano-quadrotors</h3>
+      <p class="authors">Elia Cereda, Manuele Rusci, Alessandro Giusti, and Daniele Palossi</p>
+      <p class="venue">in <em>IEEE International Conference on Robotics and Automation (ICRA)</em>, pp. 10118–10124, 2024</p>
+      <div class="links">
+        <a href="https://doi.org/10.1109/ICRA57147.2024.10610317">DOI</a>
+        <a href="https://arxiv.org/abs/2403.04071">arXiv</a>
+        <a href="https://arxiv.org/pdf/2403.04071">PDF</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>Sub-50g nano-drones are gaining momentum in both academia and industry. Their most compelling applications rely on onboard deep learning models for perception despite severe hardware constraints (i.e., sub-100mW processor). When deployed in unknown environments not represented in the training data, these models often underperform due to domain shift. To cope with this fundamental problem, we propose, for the first time, on-device learning aboard nano-drones, where the first part of the in-field mission is dedicated to self-supervised finetuning of a pre-trained convolutional neural network (CNN). Leveraging a real-world vision-based regression task, we thoroughly explore performance-cost trade-offs of the fine-tuning phase along three axes: i) dataset size (more data increases the regression performance but requires more memory and longer computation); ii) methodologies (e.g., fine-tuning all model parameters vs. only a subset); and iii) self-supervision strategy. Our approach demonstrates an improvement in mean absolute error up to 30% compared to the pre-trained baseline, requiring only 22s fine-tuning on an ultra-low-power GWT GAP9 System-on-Chip. Addressing the domain shift problem via on-device learning aboard nano-drones not only marks a novel result for hardware-limited robots but lays the ground for more general advancements for the entire robotics community.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@inproceedings{cereda2024ondevice,
+  author={Cereda, Elia and Rusci, Manuele and Giusti, Alessandro and Palossi, Daniele},
+  booktitle={2024 IEEE International Conference on Robotics and Automation (ICRA)},
+  title={On-device Self-supervised Learning of Visual Perception Tasks aboard Hardware-limited Nano-quadrotors},
+  year={2024},
+  pages={10118-10124},
+  doi={10.1109/ICRA57147.2024.10610317},
+}</code></pre>
+        </div>
+      </details>
+      <details class="fold">
+        <summary>Video</summary>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/blOid4iUFAM?rel=0" title="Video: On-device Self-supervised Learning of Visual Perception Tasks aboard Hardware-limited Nano-quadrotors" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="video-fallback">If the player shows an error, <a href="https://www.youtube.com/watch?v=blOid4iUFAM">watch on YouTube</a>.</p>
+      </details>
+    </article>
+
+    <article class="pub" id="p12">
+      <p class="index">[12]</p>
+      <h3>Self-Supervised Learning of Visual Robot Localization Using LED State Prediction as a Pretext Task</h3>
+      <p class="authors">Mirko Nava, Nicholas Carlotti, Luca Crupi, Daniele Palossi, and Alessandro Giusti</p>
+      <p class="venue">in <em>IEEE Robotics and Automation Letters</em>, vol. 9, no. 4, pp. 3363–3370, 2024</p>
+      <div class="links">
+        <a href="https://doi.org/10.1109/LRA.2024.3365973">DOI</a>
+        <a href="https://arxiv.org/abs/2402.09886">arXiv</a>
+        <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=10436339">PDF</a>
+        <a href="https://github.com/idsia-robotics/leds-as-pretext">Code</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>We propose a novel self-supervised approach for learning to visually localize robots equipped with controllable LEDs. We rely on a few training samples labeled with position ground truth and many training samples in which only the LED state is known, whose collection is cheap. We show that using LED state prediction as a pretext task significantly helps to learn the visual localization end task. The resulting model does not require knowledge of LED states during inference. We instantiate the approach to visual relative localization of nano-quadrotors: experimental results show that using our pretext task significantly improves localization accuracy (from 68.3% to 76.2%) and outperforms alternative strategies, such as a supervised baseline, model pre-training, and an autoencoding pretext task. We deploy our model aboard a 27-g Crazyflie nano-drone, running at 21 fps, in a position-tracking task of a peer nano-drone. Our approach, relying on position labels for only 300 images, yields a mean tracking error of 4.2 cm versus 11.9 cm of a supervised baseline model trained without our pretext task. Videos and code of the proposed approach are available at https://github.com/idsia-robotics/leds-as-pretext.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@article{nava2024self,
+  author={Nava, Mirko and Carlotti, Nicholas and Crupi, Luca and Palossi, Daniele and Giusti, Alessandro},
+  journal={IEEE Robotics and Automation Letters},
+  title={Self-Supervised Learning of Visual Robot Localization Using LED State Prediction as a Pretext Task},
+  year={2024},
+  volume={9},
+  number={4},
+  pages={3363-3370},
+  doi={10.1109/LRA.2024.3365973},
+}</code></pre>
+        </div>
+      </details>
+    </article>
+
+    <article class="pub" id="p13">
+      <p class="index">[13]</p>
+      <h3>Self-supervised prediction of the intention to interact with a service robot</h3>
+      <p class="authors">Gabriele Abbate, Alessandro Giusti, Viktor Schmuck, Oya Celiktutan, and Antonio Paolillo</p>
+      <p class="venue">in <em>Robotics and Autonomous Systems</em>, vol. 171, art. 104568, 2024</p>
+      <div class="links">
+        <a href="https://doi.org/10.1016/j.robot.2023.104568">DOI</a>
+        <a href="https://arxiv.org/abs/2309.07477">arXiv</a>
+        <a href="https://arxiv.org/pdf/2309.07477">PDF</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>A service robot can provide a smoother interaction experience if it has the ability to proactively detect whether a nearby user intends to interact, in order to adapt its behavior e.g. by explicitly showing that it is available to provide a service. In this work, we propose a learning-based approach to predict the probability that a human user will interact with a robot before the interaction actually begins; the approach is self-supervised because after each encounter with a human, the robot can automatically label it depending on whether it resulted in an interaction or not. We explore different classification approaches, using different sets of features considering the pose and the motion of the user. We validate and deploy the approach in three scenarios. The first collects 3442 natural sequences (both interacting and non-interacting) representing employees in an office break area: a real-world, challenging setting, where we consider a coffee machine in place of a service robot. The other two scenarios represent researchers interacting with service robots (200 and 72 sequences, respectively). Results show that, even in challenging real-world settings, our approach can learn without external supervision, and can achieve accurate classification (i.e. AUROC greater than 0.9) of the user's intention to interact with an advance of more than 3 s before the interaction actually occurs.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@article{abbate2024self,
+  author={Abbate, Gabriele and Giusti, Alessandro and Schmuck, Viktor and Celiktutan, Oya and Paolillo, Antonio},
+  journal={Robotics and Autonomous Systems},
+  title={Self-supervised prediction of the intention to interact with a service robot},
+  year={2024},
+  volume={171},
+  pages={104568},
+  doi={10.1016/j.robot.2023.104568},
+}</code></pre>
+        </div>
+      </details>
+    </article>
+
+    <!-- ─────────────────────────── 2023 ─────────────────────────── -->
+    <h2 class="year" id="y2023">2023</h2>
+
+    <article class="pub" id="p14">
+      <p class="index">[14]</p>
+      <h3>Hazards&amp;Robots: A dataset for visual anomaly detection in robotics</h3>
+      <p class="authors">Dario Mantegazza, Alind Xhyra, Luca Maria Gambardella, Alessandro Giusti, and Jérôme Guzzi</p>
+      <p class="venue">in <em>Data in Brief</em>, vol. 48, art. 109264, 2023</p>
+      <div class="links">
+        <a href="https://doi.org/10.1016/j.dib.2023.109264">DOI</a>
+        <a href="https://www.sciencedirect.com/science/article/pii/S2352340923003839">PDF</a>
+        <a href="https://github.com/idsia-robotics/hazard-detection">Code</a>
+        <a href="https://zenodo.org/record/7859211">Dataset</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>We propose Hazards&amp;Robots, a dataset for Visual Anomaly Detection in Robotics. The dataset is composed of 324,408 RGB frames, and corresponding feature vectors; it contains 145,470 normal frames and 178,938 anomalous ones categorized in 20 different anomaly classes. The dataset can be used to train and test current and novel visual anomaly detection methods such as those based on deep learning vision models. The data is recorded with a DJI Robomaster S1 front facing camera. The ground robot, controlled by a human operator, traverses university corridors. Considered anomalies include presence of humans, unexpected objects on the floor, defects to the robot. Preliminary versions of the dataset are used in [1,3]. This version is available at [12].</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@article{mantegazza2023hazards,
+  author={Mantegazza, Dario and Xhyra, Alind and Gambardella, Luca Maria and Giusti, Alessandro and Guzzi, J{\'e}r{\^o}me},
+  journal={Data in Brief},
+  title={Hazards\&amp;Robots: A dataset for visual anomaly detection in robotics},
+  year={2023},
+  volume={48},
+  pages={109264},
+  doi={10.1016/j.dib.2023.109264},
+}</code></pre>
+        </div>
+      </details>
+    </article>
+
+    <!-- ─────────────────────────── 2022 ─────────────────────────── -->
+    <h2 class="year" id="y2022">2022</h2>
+
+    <article class="pub" id="p15">
+      <p class="index">[15]</p>
+      <h3>An Outlier Exposure Approach to Improve Visual Anomaly Detection Performance for Mobile Robots</h3>
+      <p class="authors">Dario Mantegazza, Alessandro Giusti, Luca Maria Gambardella, and Jérôme Guzzi</p>
+      <p class="venue">in <em>IEEE Robotics and Automation Letters</em>, vol. 7, no. 4, pp. 11354–11361, 2022</p>
+      <div class="links">
+        <a href="https://doi.org/10.1109/LRA.2022.3192794">DOI</a>
+        <a href="https://ieeexplore.ieee.org/abstract/document/9834998/">PDF</a>
+        <a href="https://github.com/idsia-robotics/hazard-detection">Code</a>
+        <a href="https://zenodo.org/record/7074958">Dataset</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>We consider the problem of building visual anomaly detection systems for mobile robots. Standard anomaly detection models are trained using large datasets composed only of non-anomalous data. However, in robotics applications, it is often the case that (potentially very few) examples of anomalies are available. We tackle the problem of exploiting these data to improve the performance of a Real-NVP anomaly detection model, by minimizing, jointly with the Real-NVP loss, an auxiliary outlier exposure margin loss. We perform quantitative experiments on a novel dataset (which we publish as supplementary material) designed for anomaly detection in an indoor patrolling scenario. On a disjoint test set, our approach outperforms alternatives and shows that exposing even a small number of anomalous frames yields significant performance improvements.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@article{mantegazza2022outlier,
+  author={Mantegazza, Dario and Giusti, Alessandro and Gambardella, Luca Maria and Guzzi, J{\'e}r{\^o}me},
+  journal={IEEE Robotics and Automation Letters},
+  title={An Outlier Exposure Approach to Improve Visual Anomaly Detection Performance for Mobile Robots},
+  year={2022},
+  volume={7},
+  number={4},
+  pages={11354-11361},
+  doi={10.1109/LRA.2022.3192794},
+}</code></pre>
+        </div>
+      </details>
+    </article>
+
+    <article class="pub" id="p16">
+      <p class="index">[16]</p>
+      <h3>Learning Visual Localization of a Quadrotor Using its Noise as Self-Supervision</h3>
+      <p class="authors">Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca Maria Gambardella, and Alessandro Giusti</p>
+      <p class="venue">in <em>IEEE Robotics and Automation Letters</em>, vol. 7, no. 2, pp. 2218–2225, 2022</p>
+      <div class="links">
+        <a href="https://doi.org/10.1109/LRA.2022.3143565">DOI</a>
+        <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=9686072">PDF</a>
+        <a href="https://github.com/idsia-robotics/Sound-as-Pretext">Code</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>We introduce an approach to train neural network models for visual object localization using a small training set, labeled with ground truth object positions, and a large unlabeled one. We assume that the object to be localized emits sound, which is perceived by a microphone rigidly affixed to the camera. This information is used as the target of a cross-modal pretext task: predicting sound features from camera frames. By solving the pretext task, the model draws self-supervision from visual and auditory data. The approach is well suited to robot learning: we instantiate it to localize a small quadrotor from 128x80 pixel images acquired by a ground robot. Experiments on a separate testing set show that introducing the auxiliary pretext task yields large performance improvements: the Mean Absolute Error (MAE) of the estimated image coordinates of the target is reduced from 7 to 4 pixels; the MAE of the estimated distance is reduced from 28 cm to 14 cm. A model that has access to labels for the entire training set yields a MAE of 2 pixels and 11 cm, respectively.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@article{nava2022learning,
+  author={Nava, Mirko and Paolillo, Antonio and Guzzi, J{\'e}r{\^o}me and Gambardella, Luca Maria and Giusti, Alessandro},
+  journal={IEEE Robotics and Automation Letters},
+  title={Learning Visual Localization of a Quadrotor Using its Noise as Self-Supervision},
+  year={2022},
+  volume={7},
+  number={2},
+  pages={2218-2225},
+  doi={10.1109/LRA.2022.3143565},
+}</code></pre>
+        </div>
+      </details>
+      <details class="fold">
+        <summary>Video</summary>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/fuexj03mGNo?rel=0" title="Video: Learning Visual Localization of a Quadrotor Using its Noise as Self-Supervision" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="video-fallback">If the player shows an error, <a href="https://www.youtube.com/watch?v=fuexj03mGNo">watch on YouTube</a>.</p>
+      </details>
+    </article>
+
+    <!-- ─────────────────────────── 2021 ─────────────────────────── -->
+    <h2 class="year" id="y2021">2021</h2>
+
+    <article class="pub" id="p17">
+      <p class="index">[17]</p>
+      <h3>Uncertainty-Aware Self-Supervised Learning of Spatial Perception Tasks</h3>
+      <p class="authors">Mirko Nava, Antonio Paolillo, Jérôme Guzzi, Luca Maria Gambardella, and Alessandro Giusti</p>
+      <p class="venue">in <em>IEEE Robotics and Automation Letters</em>, vol. 6, no. 4, pp. 6693–6700, 2021</p>
+      <div class="links">
+        <a href="https://doi.org/10.1109/LRA.2021.3095269">DOI</a>
+        <a href="https://arxiv.org/abs/2103.12007">arXiv</a>
+        <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=9477010">PDF</a>
+        <a href="https://github.com/idsia-robotics/uncertainty-aware-ssl-spatial-perception">Code</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>We propose a general self-supervised learning approach for spatial perception tasks, such as estimating the pose of an object relative to the robot, from onboard sensor readings. The model is learned from training episodes, by relying on: a continuous state estimate, possibly inaccurate and affected by odometry drift; and a detector, that sporadically provides supervision about the target pose. We demonstrate the general approach in three different concrete scenarios: a simulated robot arm that visually estimates the pose of an object of interest; a small differential drive robot using 7 infrared sensors to localize a nearby wall; an omnidirectional mobile robot that localizes itself in an environment from camera images. Quantitative results show that the approach works well in all three scenarios, and that explicitly accounting for uncertainty yields statistically significant performance improvements.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@article{nava2021uncertainty,
+  author={Nava, Mirko and Paolillo, Antonio and Guzzi, J{\'e}r{\^o}me and Gambardella, Luca Maria and Giusti, Alessandro},
+  journal={IEEE Robotics and Automation Letters},
+  title={Uncertainty-Aware Self-Supervised Learning of Spatial Perception Tasks},
+  year={2021},
+  volume={6},
+  number={4},
+  pages={6693-6700},
+  doi={10.1109/LRA.2021.3095269},
+}</code></pre>
+        </div>
+      </details>
+      <details class="fold">
+        <summary>Video</summary>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/A9gpNRDH56E?rel=0" title="Video: Uncertainty-Aware Self-Supervised Learning of Spatial Perception Tasks" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="video-fallback">If the player shows an error, <a href="https://www.youtube.com/watch?v=A9gpNRDH56E">watch on YouTube</a>.</p>
+      </details>
+    </article>
+
+    <article class="pub" id="p18">
+      <p class="index">[18]</p>
+      <h3>State-Consistency Loss for Learning Spatial Perception Tasks From Partial Labels</h3>
+      <p class="authors">Mirko Nava, Luca Maria Gambardella, and Alessandro Giusti</p>
+      <p class="venue">in <em>IEEE Robotics and Automation Letters</em>, vol. 6, no. 2, pp. 1112–1119, 2021</p>
+      <div class="links">
+        <a href="https://doi.org/10.1109/LRA.2021.3056378">DOI</a>
+        <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=9345348">PDF</a>
+        <a href="https://github.com/idsia-robotics/state-consistency-loss">Code</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>When learning models for real-world robot spatial perception tasks, one might have access only to partial labels: this occurs for example in semi-supervised scenarios (in which labels are not available for a subset of the training instances) or in some types of self-supervised robot learning (where the robot autonomously acquires a labeled training set, but only acquires labels for a subset of the output variables in each instance). We introduce a general approach to deal with this class of problems using an auxiliary loss enforcing the expectation that the perceived environment state should not abruptly change; then, we instantiate the approach to solve two robot perception problems: a simulated ground robot learning long-range obstacle mapping as a 400-binary-label classification task in a self-supervised way in a static environment; and a real nano-quadrotor learning human pose estimation as a 3-variable regression task in a semi-supervised way in a dynamic environment. In both cases, our approach yields significant quantitative performance improvements (average increase of 6 AUC percentage points in the former; relative improvement of the R<sup>2</sup> metric ranging from 7% to 33% in the latter) over baselines.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@article{nava2021state,
+  author={Nava, Mirko and Gambardella, Luca Maria and Giusti, Alessandro},
+  journal={IEEE Robotics and Automation Letters},
+  title={State-Consistency Loss for Learning Spatial Perception Tasks From Partial Labels},
+  year={2021},
+  volume={6},
+  number={2},
+  pages={1112-1119},
+  doi={10.1109/LRA.2021.3056378},
+}</code></pre>
+        </div>
+      </details>
+      <details class="fold">
+        <summary>Video</summary>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/o38QfyoLnUU?rel=0" title="Video: State-Consistency Loss for Learning Spatial Perception Tasks From Partial Labels" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="video-fallback">If the player shows an error, <a href="https://www.youtube.com/watch?v=o38QfyoLnUU">watch on YouTube</a>.</p>
+      </details>
+    </article>
+
+    <!-- ─────────────────────────── 2019 ─────────────────────────── -->
+    <h2 class="year" id="y2019">2019</h2>
+
+    <article class="pub" id="p19">
+      <p class="index">[19]</p>
+      <h3>Learning Long-Range Perception Using Self-Supervision From Short-Range Sensors and Odometry</h3>
+      <p class="authors">Mirko Nava, Jérôme Guzzi, R. Omar Chavez-Garcia, Luca Maria Gambardella, and Alessandro Giusti</p>
+      <p class="venue">in <em>IEEE Robotics and Automation Letters</em>, vol. 4, no. 2, pp. 1279–1286, 2019</p>
+      <div class="links">
+        <a href="https://doi.org/10.1109/LRA.2019.2894849">DOI</a>
+        <a href="https://arxiv.org/abs/1809.07207">arXiv</a>
+        <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=8624299">PDF</a>
+        <a href="https://github.com/idsia-robotics/learning-long-range-perception">Code</a>
+        <a href="https://drive.switch.ch/index.php/s/v6P93gv6lA77AQ4">Dataset (real)</a>
+        <a href="https://drive.switch.ch/index.php/s/oYZCNfIeZ06mKT0">Dataset (sim)</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>We introduce a general self-supervised approach to predict the future outputs of a short-range sensor (such as a proximity sensor) given the current outputs of a long-range sensor (such as a camera). We assume that the former is directly related to some piece of information to be perceived (such as the presence of an obstacle in a given position), whereas the latter is information rich but hard to interpret directly. We instantiate and implement the approach on a small mobile robot to detect obstacles at various distances using the video stream of the robot's forward-pointing camera, by training a convolutional neural network on automatically-acquired datasets. We quantitatively evaluate the quality of the predictions on unseen scenarios, qualitatively evaluate robustness to different operating conditions, and demonstrate usage as the sole input of an obstacle-avoidance controller. We additionally instantiate the approach on a different simulated scenario with complementary characteristics, to exemplify the generality of our contribution.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@article{nava2019learning,
+  author={Nava, Mirko and Guzzi, J{\'e}r{\^o}me and Chavez-Garcia, R. Omar and Gambardella, Luca Maria and Giusti, Alessandro},
+  journal={IEEE Robotics and Automation Letters},
+  title={Learning Long-Range Perception Using Self-Supervision From Short-Range Sensors and Odometry},
+  year={2019},
+  volume={4},
+  number={2},
+  pages={1279-1286},
+  doi={10.1109/LRA.2019.2894849},
+}</code></pre>
+        </div>
+      </details>
+      <details class="fold">
+        <summary>Video</summary>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/w8wzY8wr12k?rel=0" title="Video: Learning Long-Range Perception Using Self-Supervision From Short-Range Sensors and Odometry" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="video-fallback">If the player shows an error, <a href="https://www.youtube.com/watch?v=w8wzY8wr12k">watch on YouTube</a>.</p>
+      </details>
+    </article>
+
+    <!--
+    ============================================================
+      TEMPLATE — copy this block to add a paper, then fill it in.
+      Delete any line that does not apply.
+    ============================================================
+    <article class="pub" id="pN">
+      <p class="index">[N]</p>
+      <h3>PAPER TITLE</h3>
+      <p class="authors">First Author, Second Author, and Third Author</p>
+      <p class="venue">in <em>VENUE NAME</em>, vol. X, no. Y, pp. AA&ndash;BB, YEAR</p>
+      <div class="links">
+        <a href="https://doi.org/DOI">DOI</a>
+        <a href="https://arxiv.org/abs/ID">arXiv</a>
+        <a href="https://arxiv.org/pdf/ID">PDF</a>
+        <a href="https://github.com/idsia-robotics/REPO">Code</a>
+        <a href="https://zenodo.org/record/ID">Dataset</a>
+      </div>
+      <div class="abstract">
+        <h4>Abstract</h4>
+        <p>ABSTRACT, verbatim from the published version.</p>
+      </div>
+      <details class="fold">
+        <summary>BibTeX</summary>
+        <div class="bib">
+          <button type="button" data-copy>Copy</button>
+<pre tabindex="0"><code>@article{KEY,
+  author={Last, First and Last, First},
+  journal={VENUE},
+  title={TITLE},
+  year={YEAR},
+  doi={DOI},
+}</code></pre>
+        </div>
+      </details>
+      <details class="fold">
+        <summary>Video</summary>
+        <div class="video">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID?rel=0" title="Video: PAPER TITLE" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <p class="video-fallback">If the player shows an error, <a href="https://www.youtube.com/watch?v=VIDEO_ID">watch on YouTube</a>.</p>
+      </details>
+    </article>
+    -->
+
+  </div>
+</section>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Autonomous Robotics group, Dalle Molle Institute for Artificial Intelligence (IDSIA), USI–SUPSI, Lugano, Switzerland.</p>
+    <p>Contact: <a href="mailto:alessandro.giusti@supsi.ch">alessandro.giusti@supsi.ch</a> · <a href="https://idsia-robotics.github.io/">idsia-robotics.github.io</a></p>
+  </div>
+</footer>
+
+<!--
+  The only script on the page: makes the "Copy" button on each BibTeX block
+  copy the citation to the clipboard. The page works fine without it.
+-->
+<script>
+document.addEventListener('click', function (event) {
+  const button = event.target.closest('button[data-copy]');
+  if (!button) return;
+
+  const code = button.parentElement.querySelector('code');
+  if (!code) return;
+
+  const restore = () => {
+    button.textContent = 'Copied';
+    setTimeout(function () { button.textContent = 'Copy'; }, 1600);
+  };
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(code.textContent).then(restore, function () {
+      button.textContent = 'Select & copy';
+    });
+  } else {
+    // Fallback: select the text so the user can copy it manually.
+    const range = document.createRange();
+    range.selectNodeContents(code);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    button.textContent = 'Selected';
+  }
+});
+</script>
+
+</body>
+</html>
